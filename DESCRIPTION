@@ -1,0 +1,27 @@
+Package: mnsentinellakes
+Title: Minnesota DNR Sentinel Lakes Program Tools
+Version: 0.0.0.9000
+Authors@R: person("Tim", "Martin", email = "tim.martin@state.mn.us", role = c("aut", "cre"))
+Description: This package contains a variety of tools developed to aid in the management of the MNDNR Sentinel Lakes Long-Term Ecological Monitoring Program. It contains functions used to access, analyze, and visualize Sentinel Lakes data. If possible, these functions have been designed to also be used for data from lakes that have been collected by the MNDNR and/or MNPCA but are not a part of the Sentinel Lakes Program.
+Depends: R (>= 3.5.1)
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports:
+    data.table,
+    dplyr,
+    ggplot2,
+    ggpubr,
+    Hmisc,
+    httr,
+    jsonlite,
+    lubridate,
+    RODBC,
+    stats,
+    tools,
+    tidyr,
+    utils,
+    xml2,
+    xts,
+    zoo
