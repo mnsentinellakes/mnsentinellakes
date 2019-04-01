@@ -13,8 +13,8 @@ icedownload(lakeid)
 a data.frame with lake ice data.
 }
 \description{
-This function downloads lake ice in and out dates from the Minnesota Climatology website: https://www.dnr.state.mn.us/ice_out/index.html and 
-https://www.dnr.state.mn.us/ice_in/index.html.
+This function downloads lake ice in and out dates from the Minnesota Climatology website: https://www.dnr.state.mn.us/ice_out/index.html and
+https://www.dnr.state.mn.us/ice_in/index.html. The data are already formatted into the Sentinel Lakes format.
 }
 \concept{Ice}
 \keyword{climate}
