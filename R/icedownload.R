@@ -12,8 +12,6 @@
 
 icedownload=function(lakeid){
 
-  lakeid="26003600"
-
   lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==lakeid]
   if (length(lakename)>0){
   iceoutput=NULL
