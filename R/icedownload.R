@@ -67,8 +67,10 @@ icedownload=function(lakeid){
 
   iceoutput=data.frame("Lake"=lakename,"LakeId"=lakeid,"Date"=iceoutput$Date,"Ice_Status"=iceoutput$Ice_Status,
                        "Source"=iceoutput$Source,"Comments"=iceoutput$Comment)
-  return(iceoutput)
+
   }else{
-    print("No ice data for this lake")
+    iceoutput=print("No ice data for this lake")
   }
+  return(iceoutput)
+
 }
