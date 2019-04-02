@@ -8,6 +8,7 @@
 #' @export
 
 wqstations = function(lakeid){
+
   if (lakeid %in% unique(mnsentinellakes::sentinelmnpcastations$LakeId)){
     stations=mnsentinellakes::sentinelmnpcastations$ID_CODE[mnsentinellakes::sentinelmnpcastations$LakeId==lakeid]
   }else if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId)){
