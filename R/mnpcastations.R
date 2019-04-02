@@ -1,6 +1,6 @@
 #' MNPCA Stations
-#' 
-#' A dataset with lists of mnpca stations for each Sentinel Lake.
+#'
+#' A dataset with a list of lake mnpca stations.
 #' @docType data
 #' @usage data(mnpcastations)
 #' @format a data frame.

@@ -6,11 +6,11 @@
 #' @keywords water levels Minnesota data
 #' @return a data.frame with water level data
 #' examples
-#' x <- waterleveldata("11041300")
+#' x <- waterleveldownload("11041300")
 #'
 #' @export
 
-waterleveldata = function(lakeid){
+waterleveldownload = function(lakeid){
   wtrlvldata=as.data.frame(data.table::fread(paste0("http://webapps5.dnr.state.mn.us/cgi-bin/lk_levels_dump.pl?format=csv&id=",lakeid)))
 
   if (nrow(wtrlvldata)>0){

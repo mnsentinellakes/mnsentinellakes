@@ -67,7 +67,7 @@ wqmonthtrendplots(
 Other Water Quality: \code{\link{wqdatadownload}},
   \code{\link{wqmonthtable}},
   \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}
+  \code{\link{wqparameters}}, \code{\link{wqstations}}
 }
 \concept{Water Quality}
 \keyword{quality}

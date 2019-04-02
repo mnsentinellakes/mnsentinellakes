@@ -56,7 +56,7 @@ y <- wqmonthtable(
 Other Water Quality: \code{\link{wqdatadownload}},
   \code{\link{wqmonthtrendplots}},
   \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}
+  \code{\link{wqparameters}}, \code{\link{wqstations}}
 }
 \concept{Water Quality}
 \keyword{minnesota}

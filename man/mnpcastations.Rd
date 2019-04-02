@@ -9,6 +9,6 @@
 data(mnpcastations)
 }
 \description{
-A dataset with lists of mnpca stations for each Sentinel Lake.
+A dataset with a list of lake mnpca stations.
 }
 \keyword{datasets}

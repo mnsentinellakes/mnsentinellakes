@@ -21,7 +21,7 @@ This function calculates linear trend statistics using data download from the MN
 Other Water Quality: \code{\link{wqdatadownload}},
   \code{\link{wqmonthtable}},
   \code{\link{wqmonthtrendplots}},
-  \code{\link{wqparameters}}
+  \code{\link{wqparameters}}, \code{\link{wqstations}}
 }
 \concept{Water Quality}
 \keyword{analysis}

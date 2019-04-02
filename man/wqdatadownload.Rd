@@ -24,7 +24,7 @@ wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 Other Water Quality: \code{\link{wqmonthtable}},
   \code{\link{wqmonthtrendplots}},
   \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}
+  \code{\link{wqparameters}}, \code{\link{wqstations}}
 }
 \concept{Water Quality}
 \keyword{download.}

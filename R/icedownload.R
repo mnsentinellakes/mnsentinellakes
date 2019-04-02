@@ -16,14 +16,12 @@ icedownload=function(lakeid){
   if (length(lakename)>0){
   iceoutput=NULL
   for (i in c("in","out")){
-
     if (i=="in"){
       icestatus="In"
     }else if (i=="out"){
       icestatus="Out"
     }
     inputurl=paste0("https://maps1.dnr.state.mn.us/cgi-bin/climatology/ice_",i,"_by_lake.cgi?id=",lakeid)
-
 
     x=as.character(xml2::read_html(inputurl))
     x=as.character(regmatches(x,gregexpr("\\[.+\\]",x)))
@@ -72,5 +70,4 @@ icedownload=function(lakeid){
     iceoutput=print("No ice data for this lake")
   }
   return(iceoutput)
-
 }

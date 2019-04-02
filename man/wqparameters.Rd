@@ -26,7 +26,7 @@ wqparameters(x)
 Other Water Quality: \code{\link{wqdatadownload}},
   \code{\link{wqmonthtable}},
   \code{\link{wqmonthtrendplots}},
-  \code{\link{wqmonthtrendstats}}
+  \code{\link{wqmonthtrendstats}}, \code{\link{wqstations}}
 }
 \concept{Water Quality}
 \keyword{minnesota}
