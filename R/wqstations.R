@@ -5,6 +5,7 @@
 #' @keywords mnpca water quality minnesota pollution control stations
 #' @family Water Quality
 #' @return a list of water quality station ids
+#' @export
 
 wqstations = function(lakeid){
   if (lakeid %in% unique(mnsentinellakes::sentinelmnpcastations$LakeId)){
