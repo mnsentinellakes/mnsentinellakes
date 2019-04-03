@@ -41,7 +41,7 @@ x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 #Process multiple parameters for multiple months within a given year range
 y <- wqmonthtable(
        wqdata = x,
-       parameters = c("Depth", "Secchi disk depth","Temperature, water","pH","Chloride"),
+       parameters = c("Depth","Secchi disk depth","Temperature,"water","pH","Chloride"),
        months = c(7,8,9),
        startyear = 2008,
        endyear = 2018
@@ -58,7 +58,8 @@ fish2sentinel(y)
 #Convert Water Quality Data into the Sentinel Lakes Format
 wq2sentinel(x)
 
-#The ice, water level, and weather data are already processed into the Sentinel Lakes format when they are downloaded.
+#The ice, water level, and weather data are already processed into the Sentinel Lakes 
+#format when they are downloaded.
 ```
 ##### Lake Ids and Names
 This package includes a number of functions to handle issues with Minnesota Lake Ids as well as convert Lake Ids to Names and vice versa.
