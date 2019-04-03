@@ -11,10 +11,12 @@
 #' @export
 
 lakeidtoname=function(lakeid){
+
   lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==mnsentinellakes::fixlakeid(lakeid)]
-  if(length(lakename)==1){
-    return(lakename)
-  }else{
-    print("No associated name for this LakeId")
+
+  if (length(lakename)==0){
+    lakename=NULL
+    warning("No lakes with that LakeId.")
   }
+  return(lakename)
 }
