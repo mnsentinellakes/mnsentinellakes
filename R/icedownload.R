@@ -12,7 +12,7 @@
 
 icedownload=function(lakeid){
 
-  lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==lakeid]
+  lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==mnsentinellakes::fixlakeid(lakeid)]
   if (length(lakename)>0){
   iceoutput=NULL
   for (i in c("in","out")){
@@ -69,5 +69,11 @@ icedownload=function(lakeid){
   }else{
     iceoutput=print("No ice data for this lake")
   }
+
+  if (is.null(iceoutput)){
+    warning("No ice data for this lake.")
+  }
+
+
   return(iceoutput)
 }
