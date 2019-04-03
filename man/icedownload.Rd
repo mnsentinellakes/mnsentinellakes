@@ -16,6 +16,9 @@ a data.frame with lake ice data.
 This function downloads lake ice in and out dates from the Minnesota Climatology website: https://www.dnr.state.mn.us/ice_out/index.html and
 https://www.dnr.state.mn.us/ice_in/index.html. The data are already formatted into the Sentinel Lakes format.
 }
+\examples{
+x <- icedownload("21005700")
+}
 \concept{Ice}
 \keyword{climate}
 \keyword{data}
