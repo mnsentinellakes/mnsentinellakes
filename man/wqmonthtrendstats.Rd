@@ -17,6 +17,22 @@ a data.frame with statistics for each parameter in the water quality data.frame 
 \description{
 This function calculates linear trend statistics using data download from the MNPCA using the output of the wqmonthtable() function.
 }
+\examples{
+#Download the data
+x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
+
+#Create WQ formatted table
+y <- wqmonthtable(
+       wqdata = x,
+       parameters = c("Depth", "Secchi disk depth","Temperature"),
+       months = c(7,8,9),
+       startyear = 2008,
+       endyear = 2018
+     )
+
+wqmonthtrendstats(statdata = y)
+
+}
 \seealso{
 Other Water Quality: \code{\link{wqdatadownload}},
   \code{\link{wqmonthtable}},
