@@ -27,106 +27,109 @@ weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperatur
     IATA=mnsentinellakes::mnlakesmetadata$IATA[mnsentinellakes::mnlakesmetadata$LakeId==lakeid]
   }
 
+  if (length(IATA)==1){
+    #Setup first portion of URL
+    wthrdata=paste0("https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=",IATA)
 
-  #Setup first portion of URL
-  wthrdata=paste0("https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=",IATA)
+    #Parameters
+    #Air temperature
+    if("Air Temperature" %in% parameters){
+      atp="&data=tmpc"
+    }else{
+      atp=""
+    }
 
-  #Parameters
-  #Air temperature
-  if("Air Temperature" %in% parameters){
-    atp="&data=tmpc"
+    #Dew Point
+    if("Dew Point" %in% parameters){
+      dwp="&data=dwpc"
+    }else{
+      dwp=""
+    }
+
+    #Relative Humidity
+    if("Relative Humidity" %in% parameters){
+      rlh="&data=relh"
+    }else{
+      rlh=""
+    }
+
+    #Wind Direction
+    if("Wind Direction" %in% parameters){
+      wdr="&data=drct"
+    }else{
+      wdr=""
+    }
+
+    #Wind Speed
+    if("Wind Speed" %in% parameters){
+      wsd="&data=sknt"
+    }else{
+      wsd=""
+    }
+
+    #Altimeter
+    if("Altimeter" %in% parameters){
+      alt="&data=alti"
+    }else{
+      alt=""
+    }
+
+    #Sea level pressure
+    slp=""
+    # if(input$slp==TRUE){
+    #   slp="&data=mslp"
+    # }else{
+    #   slp=""
+    # }
+
+    #Precipitation
+    if("Precipitation" %in% parameters){
+      pcp="&data=p01m"
+    }else{
+      pcp=""
+    }
+
+    #Visibility
+    vsb=""
+    # if(input$vis==TRUE){
+    #   vsb="&data=vsby"
+    # }else{
+    #   vsb=""
+    # }
+
+    #Gust
+    if("Gust Speed" %in% parameters){
+      gsd="&data=gust"
+    }else{
+      gsd=""
+    }
+
+    #Cloud Coverage
+    sky=""
+    # if(input$skyl==TRUE){
+    #   sky="&data=skyc1&data=skyc2&data=skyc3&data=skyl1&data=skyl2&data=skyl3"
+    # }else{
+    #   sky=""
+    # }
+
+    #Compile URL based upon the selected parameters
+    wthrdata=paste0(wthrdata,atp,dwp,rlh,wdr,wsd,alt,slp,pcp,vsb,gsd,sky,
+                    "&year1=",lubridate::year(startdate),
+                    "&month1=",lubridate::month(startdate),
+                    "&day1=",lubridate::day(startdate),
+                    "&year2=",lubridate::year(enddate),
+                    "&month2=",lubridate::month(enddate),
+                    "&day2=",lubridate::day(enddate),
+                    "&tz=Etc%2FUTC&format=onlycomma&latlon=no&direct=no&report_type=1&report_type=2")
+
+    #Download data
+    wthrdld=data.table::fread(wthrdata)
+    wthrdld=as.data.frame(wthrdld)
+
+    wthrdld["LakeId"]=lakeid
   }else{
-    atp=""
+    wthrdld=NULL
+    warning("No weather data for this lake.")
   }
-
-  #Dew Point
-  if("Dew Point" %in% parameters){
-    dwp="&data=dwpc"
-  }else{
-    dwp=""
-  }
-
-  #Relative Humidity
-  if("Relative Humidity" %in% parameters){
-    rlh="&data=relh"
-  }else{
-    rlh=""
-  }
-
-  #Wind Direction
-  if("Wind Direction" %in% parameters){
-    wdr="&data=drct"
-  }else{
-    wdr=""
-  }
-
-  #Wind Speed
-  if("Wind Speed" %in% parameters){
-    wsd="&data=sknt"
-  }else{
-    wsd=""
-  }
-
-  #Altimeter
-  if("Altimeter" %in% parameters){
-    alt="&data=alti"
-  }else{
-    alt=""
-  }
-
-  #Sea level pressure
-  slp=""
-  # if(input$slp==TRUE){
-  #   slp="&data=mslp"
-  # }else{
-  #   slp=""
-  # }
-
-  #Precipitation
-  if("Precipitation" %in% parameters){
-    pcp="&data=p01m"
-  }else{
-    pcp=""
-  }
-
-  #Visibility
-  vsb=""
-  # if(input$vis==TRUE){
-  #   vsb="&data=vsby"
-  # }else{
-  #   vsb=""
-  # }
-
-  #Gust
-  if("Gust Speed" %in% parameters){
-    gsd="&data=gust"
-  }else{
-    gsd=""
-  }
-
-  #Cloud Coverage
-  sky=""
-  # if(input$skyl==TRUE){
-  #   sky="&data=skyc1&data=skyc2&data=skyc3&data=skyl1&data=skyl2&data=skyl3"
-  # }else{
-  #   sky=""
-  # }
-
-  #Compile URL based upon the selected parameters
-  wthrdata=paste0(wthrdata,atp,dwp,rlh,wdr,wsd,alt,slp,pcp,vsb,gsd,sky,
-                  "&year1=",lubridate::year(startdate),
-                  "&month1=",lubridate::month(startdate),
-                  "&day1=",lubridate::day(startdate),
-                  "&year2=",lubridate::year(enddate),
-                  "&month2=",lubridate::month(enddate),
-                  "&day2=",lubridate::day(enddate),
-                  "&tz=Etc%2FUTC&format=onlycomma&latlon=no&direct=no&report_type=1&report_type=2")
-
-  #Download data
-  wthrdld=data.table::fread(wthrdata)
-  wthrdld=as.data.frame(wthrdld)
-
-  wthrdld["LakeId"]=lakeid
-
   return(wthrdld)
 }
