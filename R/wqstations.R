@@ -14,7 +14,8 @@ wqstations = function(lakeid){
   }else if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId)){
     stations=mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId==lakeid]
   }else{
-    stations=print("No stations on this lake")
+    stations=NULL
+    warning("There are no stations on this lake.")
   }
   return(stations)
 }
