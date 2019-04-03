@@ -7,7 +7,7 @@
 #' @return a data.frame with lake ice data.
 #' @family Ice
 #' @examples
-#' x <- icedownload("21005700)
+#' x <- icedownload("21005700")
 #' @export
 
 icedownload=function(lakeid){

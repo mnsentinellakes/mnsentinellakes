@@ -13,7 +13,7 @@
 #' #Create WQ formatted table
 #' y <- wqmonthtable(
 #'        wqdata = x,
-#'        parameters = c("Depth, Secchi disk depth","Temperature),
+#'        parameters = c("Depth, "Secchi disk depth","Temperature"),
 #'        months = c(7,8,9),
 #'        startyear = 2008,
 #'        endyear = 2018
