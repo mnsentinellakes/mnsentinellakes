@@ -2,6 +2,12 @@
 
 export(addunderscore)
 export(fish2sentinel)
+export(fishabbrev2common)
+export(fishabbrev2scientific)
+export(fishcommon2abbrev)
+export(fishcommon2scientific)
+export(fishscientific2abbrev)
+export(fishscientific2common)
 export(fishsurveydata)
 export(fishtable)
 export(fishtrendplots)
