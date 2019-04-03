@@ -41,7 +41,7 @@ x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 #Process multiple parameters for multiple months within a given year range
 y <- wqmonthtable(
        wqdata = x,
-       parameters = c("Depth, Secchi disk depth","Temperature, water","pH","Chloride"),
+       parameters = c("Depth", "Secchi disk depth","Temperature, water","pH","Chloride"),
        months = c(7,8,9),
        startyear = 2008,
        endyear = 2018
