@@ -15,7 +15,7 @@ lakenametoid(lakename, county = NULL)
 a data.frame
 }
 \description{
-This function creates a data frame with the LakeIds for all lakes with the input name, as well as the County they are located in. If multiple lakes have the 
+This function creates a data frame with the LakeIds for all lakes with the input name, as well as the County they are located in. If multiple lakes have the
 same name, this will return a list of LakeIds.
 }
 \examples{
