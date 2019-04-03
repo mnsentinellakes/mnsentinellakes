@@ -19,7 +19,8 @@ waterleveldownload = function(lakeid){
   wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
                       "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_m"=wtrlvldata$elev_m,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
   }else{
-    wtrlvldf=print("No water level data available")
+    wtrlvldata=NULL
+    warning("No water level data available.")
   }
   return(wtrlvldf)
 }
