@@ -20,5 +20,10 @@ wqdatadownload = function(stationids){
       wqdata=rbind(wqdata,wqdatadown)
     }
   }
+
+  if(is.null(wqdata)){
+    warning("There are no data for these stationids")
+  }
+
   return(wqdata)
 }
