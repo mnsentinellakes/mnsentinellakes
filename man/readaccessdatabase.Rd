@@ -19,8 +19,8 @@ This function opens a connection to an Access database, reads the selected table
 }
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
-  \code{\link{fixlakeid}}, \code{\link{lakeidtoname}},
-  \code{\link{lakenametoid}}
+  \code{\link{fixlakeid}}, \code{\link{gpx2shp}},
+  \code{\link{lakeidtoname}}, \code{\link{lakenametoid}}
 }
 \concept{Sentinel Lakes Tools}
 \keyword{access}
