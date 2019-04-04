@@ -18,6 +18,7 @@
 #' p-value above this number will not be exported. Defaults to 0.1.
 #' @keywords fish trends
 #' @return .png plots and statistics .csv
+#' @importFrom rlang .data
 #' @family Fish
 #' @examples
 #' #Download the data
@@ -94,7 +95,7 @@ fishtrendplots=function(plotdata,logtransform=TRUE,saveto=paste0(getwd()),ptcolo
         if (includestats==TRUE){
           b = ggpubr::stat_cor(
             ggplot2::aes(
-              label = paste(..rr.label..,..p.label.., sep = "~`,`~")
+              label = paste(.data$..rr.label..,.data$..p.label.., sep = "~`,`~")
             ),
             label.x.npc = "left",
             label.y.npc = "top"
