@@ -21,7 +21,8 @@ lakeidtoname("02000400")
 }
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
-  \code{\link{fixlakeid}}, \code{\link{lakenametoid}},
+  \code{\link{fixlakeid}}, \code{\link{gpx2shp}},
+  \code{\link{lakenametoid}},
   \code{\link{readaccessdatabase}}
 }
 \concept{Sentinel Lakes Tools}
