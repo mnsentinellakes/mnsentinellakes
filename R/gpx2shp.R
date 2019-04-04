@@ -13,6 +13,8 @@
 
 gpx2shp=function(folder,saveto=NULL){
 
+  folder="D:/Datasets/GPS/Montana_2/GPX"
+
   gpxfiles=list.files(folder,pattern = ".gpx")
 
   for (i in gpxfiles){
@@ -25,28 +27,30 @@ gpx2shp=function(folder,saveto=NULL){
       tracks = FALSE,
       routes = FALSE)$waypoints
 
-    y=sp::SpatialPointsDataFrame(
-      coords = as.matrix(data.frame(x$lon,x$lat)),
-      proj4string = sp::CRS("+init=epsg:4326"),
-      data = x
-    )
-
-    if (is.null(saveto)){
-      dir.create(paste0(saveto,"/SHP"))
-
-      rgdal::writeOGR(
-        obj = y,
-        dsn = paste0(folder,"/SHP"),
-        layer = gsub(".gpx","",i),
-        driver = "ESRI Shapefile"
+    if (!is.null(x)){
+      y=sp::SpatialPointsDataFrame(
+        coords = as.matrix(data.frame(x$lon,x$lat)),
+        proj4string = sp::CRS("+init=epsg:4326"),
+        data = x
       )
-    }else{
-      rgdal::writeOGR(
-        obj = y,
-        dsn = saveto,
-        layer = gsub(".gpx","",i),
-        driver = "ESRI Shapefile"
-      )
+
+      if (is.null(saveto)){
+        dir.create(paste0(saveto,"/SHP"))
+
+        rgdal::writeOGR(
+          obj = y,
+          dsn = paste0(folder,"/SHP"),
+          layer = gsub(".gpx","",i),
+          driver = "ESRI Shapefile"
+        )
+      }else{
+        rgdal::writeOGR(
+          obj = y,
+          dsn = saveto,
+          layer = gsub(".gpx","",i),
+          driver = "ESRI Shapefile"
+        )
+      }
     }
   }
 }
