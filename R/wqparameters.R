@@ -6,6 +6,7 @@
 #' @keywords mnpca minnesota pollution water quality parameters
 #' @return A vector of water quality parameters.
 #' @family Water Quality
+#' @importFrom rlang .data
 #' @examples
 #' x <- wqdatadownload("15-0010-00-100")
 #' wqparameters(x)
@@ -13,7 +14,8 @@
 #' @export
 
 wqparameters=function(wqdata,minsample=0){
-  counttable=dplyr::count(wqdata,parameter)
+
+  counttable=dplyr::count(wqdata,.data$parameter)
 
   output=counttable$parameter[counttable$n>=minsample]
   return(output)
