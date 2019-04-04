@@ -14,19 +14,24 @@
 #' @export
 
 fishsurveydata=function(lakefinderdata){
-  LOISurveyData=NULL
-  for (j in 1:as.numeric(length(lakefinderdata$result$surveys$surveyDate))){
-    LOISurveyDatarow=as.data.frame(lakefinderdata$result$surveys$fishCatchSummaries[j])
-    if (nrow(LOISurveyDatarow)>0){
-      LOISurveyDatarow["Date"]=as.Date(lakefinderdata$result$surveys$surveyDate[j])
-      LOISurveyDatarow["LakeId"]=as.character(lakefinderdata$LakeId)
-      LOISurveyDatarow["Ecoregion"]=as.character(mnsentinellakes::mnlakesmetadata$Ecoregion[
-        mnsentinellakes::mnlakesmetadata$LakeId==fixlakeid(lakefinderdata$LakeId)])
-      LOISurveyData=rbind(LOISurveyData,LOISurveyDatarow)
+  if (!is.null(lakefinderdata)){
+    LOISurveyData=NULL
+    for (j in 1:as.numeric(length(lakefinderdata$result$surveys$surveyDate))){
+      LOISurveyDatarow=as.data.frame(lakefinderdata$result$surveys$fishCatchSummaries[j])
+      if (nrow(LOISurveyDatarow)>0){
+        LOISurveyDatarow["Date"]=as.Date(lakefinderdata$result$surveys$surveyDate[j])
+        LOISurveyDatarow["LakeId"]=as.character(lakefinderdata$LakeId)
+        LOISurveyDatarow["Ecoregion"]=as.character(mnsentinellakes::mnlakesmetadata$Ecoregion[
+          mnsentinellakes::mnlakesmetadata$LakeId==fixlakeid(lakefinderdata$LakeId)])
+        LOISurveyData=rbind(LOISurveyData,LOISurveyDatarow)
+      }
     }
-  }
-  if(is.null(LOISurveyData)){
-    print("No fisheries survey data available")
+    # if(is.null(LOISurveyData)){
+    #   print("No fisheries survey data available")
+    # }
+  }else{
+    LOISurveyData=NULL
+    warning("No Lake Finder data available")
   }
   return(LOISurveyData)
 }

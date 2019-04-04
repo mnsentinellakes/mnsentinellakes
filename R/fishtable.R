@@ -23,36 +23,40 @@
 #' @export
 
 fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){
+  if(!is.null(fishsurvey)){
+    if (!is.null(startyear)){
+      fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date)>=startyear,]
+    }
 
-  if (!is.null(startyear)){
-    fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date)>=startyear,]
-  }
+    if (!is.null(endyear)){
+      fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date<=endyear),]
+    }
 
-  if (!is.null(endyear)){
-    fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date<=endyear),]
-  }
+    LOIData=NULL
+    for (i in 1:length(fishspecies)){
 
-  LOIData=NULL
-  for (i in 1:length(fishspecies)){
-
-    speciescode=mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
-    speciesgear=mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
-    if(!is.null(fishspecies[i])){
-      if (!is.na(fishspecies[i])){
-        LOIDatarow=fishsurvey[fishsurvey$species==speciescode & fishsurvey$gear==speciesgear,]
-        if (nrow(LOIDatarow)>0){
-          LOIDatarow=LOIDatarow
-        }else{
-          LOIDatarow=LOIDatarow[nrow(LOIDatarow)+1,]
-          LOIDatarow[1,1:11]=NA
-          LOIDatarow$species=fishspecies[i]
+      speciescode=mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
+      speciesgear=mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
+      if(!is.null(fishspecies[i])){
+        if (!is.na(fishspecies[i])){
+          LOIDatarow=fishsurvey[fishsurvey$species==speciescode & fishsurvey$gear==speciesgear,]
+          if (nrow(LOIDatarow)>0){
+            LOIDatarow=LOIDatarow
+          }else{
+            LOIDatarow=LOIDatarow[nrow(LOIDatarow)+1,]
+            LOIDatarow[1,1:11]=NA
+            LOIDatarow$species=fishspecies[i]
+          }
+          LOIData=rbind(LOIData,LOIDatarow)
         }
-        LOIData=rbind(LOIData,LOIDatarow)
       }
     }
+    LOIData["Year"]=lubridate::year(LOIData$Date)
+    LOIData=LOIData[!is.na(LOIData$CPUE),]
+    LOIData=LOIData[order(LOIData$Date),]
+  }else{
+    LOIData=NULL
+    warning("No Fish Survey Data Available")
   }
-  LOIData["Year"]=lubridate::year(LOIData$Date)
-  LOIData=LOIData[!is.na(LOIData$CPUE),]
-  LOIData=LOIData[order(LOIData$Date),]
   return(LOIData)
 }
