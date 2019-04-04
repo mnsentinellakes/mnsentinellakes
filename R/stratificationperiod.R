@@ -5,6 +5,13 @@
 #' @param consecutivedays the number of consecutive days of uninterrupted stratification required to consider the lake stratified for the season. Default is 10 days.
 #' @keywords lake stratification temperature thermal profile
 #' @return a data.frame indicating the start (S) and end (E) stratification dates.
+#' @examples
+#' \dontrun{
+#' x <-stratificationperiod(
+#'       tempdata = temperaturedata,
+#'       consecutivedays = 15
+#'       )
+#' }
 #' @export
 
 stratificationperiod=function(tempdata,consecutivedays=10){
