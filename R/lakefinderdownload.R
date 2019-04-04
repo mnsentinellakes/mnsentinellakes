@@ -33,6 +33,11 @@ lakefinderdownload = function(lakeid) {
   httr::stop_for_status(res)
   out = httr::content(res, as="text", encoding="UTF-8")
   out = jsonlite::fromJSON(out, flatten=TRUE)
-  out[["LakeId"]]=lakeid
-  out
+  if (!is.null(out$result)){
+    out[["LakeId"]]=lakeid
+  }else{
+    warning(out$message)
+    out=NULL
+  }
+  return(out)
 }
