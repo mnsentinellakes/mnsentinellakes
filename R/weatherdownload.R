@@ -1,7 +1,6 @@
 #' Downloads Airport Weather Data
 #'
-#' This function downloads airport weather station data from the Iowa State Mesonet from the station nearest to chosen lake and converts it into a
-#' standardized Sentinel Lakes data format.
+#' This function downloads airport weather station data from the Iowa State Mesonet from the station nearest to chosen lake.
 #' @param lakeid Minnesota lake identifier (DOWLKNUM) for the lake of interest.
 #' @param startdate a date indicating the beginning of the date range to be downloaded. Format: "yyyy-mm-dd".
 #' @param enddate a date indicating the end of the date range to be downloaded. Format: "yyyy-mm-dd".
