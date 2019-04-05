@@ -22,11 +22,12 @@ This function converts gpx files exported from a Garmin GPS to shapefiles
 \dontrun{
 gpx2shp("C:/Data/GPS/GPX")
 }
+
 }
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
-  \code{\link{fixlakeid}}, \code{\link{lakeidtoname}},
-  \code{\link{lakenametoid}},
+  \code{\link{fixlakeid}}, \code{\link{lakeid2name}},
+  \code{\link{lakename2id}},
   \code{\link{readaccessdatabase}}
 }
 \concept{Sentinel Lakes Tools}
