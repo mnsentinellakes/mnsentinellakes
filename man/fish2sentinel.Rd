@@ -25,7 +25,8 @@ z <- fish2sentinel(y)
 
 }
 \seealso{
-Other Formatting: \code{\link{wq2sentinel}}
+Other Formatting: \code{\link{weather2sentinel}},
+  \code{\link{wq2sentinel}}
 }
 \concept{Formatting}
 \keyword{fish}
