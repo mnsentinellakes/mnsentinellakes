@@ -10,7 +10,7 @@ fish2sentinel(fishsurvey)
 \item{fishsurvey}{results from the fishsurveydata() function.}
 }
 \description{
-Reorganizes fish survey data downloaded from lakefinder into a common Sentinel Lakes format, making it easier to integrate with other Sentinel Lakes 
+Reorganizes fish survey data downloaded from lakefinder into a common Sentinel Lakes format, making it easier to integrate with other Sentinel Lakes
 formatted datasets.
 }
 \examples{
