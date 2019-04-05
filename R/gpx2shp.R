@@ -10,11 +10,10 @@
 #' \dontrun{
 #' gpx2shp("C:/Data/GPS/GPX")
 #' }
+#'
 #' @export
 
 gpx2shp=function(folder,saveto=NULL){
-
-  folder="D:/Datasets/GPS/Montana_2/GPX"
 
   gpxfiles=list.files(folder,pattern = ".gpx")
 
