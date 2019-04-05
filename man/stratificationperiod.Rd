@@ -17,6 +17,14 @@ a data.frame indicating the start (S) and end (E) stratification dates.
 \description{
 This function calculates the start and end of lake thermal stratification using daily lake temperature profile data. In this calculation, a lake is considered stratified when there is a difference of one degree C between one meter depth intervals anywhere within the water column.
 }
+\examples{
+\dontrun{
+x <-stratificationperiod(
+      tempdata = temperaturedata,
+      consecutivedays = 15
+      )
+}
+}
 \keyword{lake}
 \keyword{profile}
 \keyword{stratification}
