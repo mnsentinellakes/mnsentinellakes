@@ -20,8 +20,7 @@ weatherdownload(lakeid, startdate, enddate,
 "Wind Speed", "Altimeter", "Precipitation", and "Gust Speed". Default includes all parameters.}
 }
 \description{
-This function downloads airport weather station data from the Iowa State Mesonet from the station nearest to chosen lake and converts it into a
-standardized Sentinel Lakes data format.
+This function downloads airport weather station data from the Iowa State Mesonet from the station nearest to chosen lake.
 }
 \examples{
 x <- weatherdownload(
