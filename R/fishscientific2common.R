@@ -11,7 +11,8 @@
 
 fishscientific2common=function(scientificname){
   if(scientificname %in% mnsentinellakes::fishabbreviations$Scientific_Name){
-    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Scientific_Name==scientificname]
+    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Scientific_Name==scientificname &
+                                                          mnsentinellakes::fishabbreviations$Prime==TRUE]
     fishnameout=fishnameout[!is.na(fishnameout)]
   }else{
     warning("No common name associated with this scientific name")

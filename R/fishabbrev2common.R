@@ -11,7 +11,8 @@
 
 fishabbrev2common=function(fishabbreviation){
   if(fishabbreviation %in% mnsentinellakes::fishabbreviations$Code){
-    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Code==fishabbreviation]
+
+    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Code==fishabbreviation & mnsentinellakes::fishabbreviations$Prime==TRUE]
   }else{
     warning("No name associated with this abbreviation")
     fishnameout=NULL

@@ -11,7 +11,8 @@
 
 fishscientific2abbrev=function(scientificname){
   if(scientificname %in% mnsentinellakes::fishabbreviations$Scientific_Name){
-    fishabbrevout=mnsentinellakes::fishabbreviations$Code[mnsentinellakes::fishabbreviations$Scientific_Name==scientificname]
+    fishabbrevout=mnsentinellakes::fishabbreviations$Code[mnsentinellakes::fishabbreviations$Scientific_Name==scientificname &
+                                                            mnsentinellakes::fishabbreviations$Prime==TRUE]
   }else{
     warning("No abbreviation associated with this name")
     fishabbrevout=NULL
