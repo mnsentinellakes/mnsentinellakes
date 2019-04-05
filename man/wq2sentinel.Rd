@@ -10,7 +10,7 @@ wq2sentinel(wqdata)
 \item{wqdata}{a water quality data.frame downloaded using the wqdatadownload() function.}
 }
 \description{
-Reorganizes water quality data downloaded from the MNPCA's EDA website into a common Sentinel Lakes format, making it easier to integrate with other Sentinel 
+Reorganizes water quality data downloaded from the MNPCA's EDA website into a common Sentinel Lakes format, making it easier to integrate with other Sentinel
 Lakes formatted datasets.
 }
 \examples{
