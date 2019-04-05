@@ -22,8 +22,8 @@ fixlakeid("06-0002-00")
 }
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
-  \code{\link{gpx2shp}}, \code{\link{lakeidtoname}},
-  \code{\link{lakenametoid}},
+  \code{\link{gpx2shp}}, \code{\link{lakeid2name}},
+  \code{\link{lakename2id}},
   \code{\link{readaccessdatabase}}
 }
 \concept{Sentinel Lakes Tools}
