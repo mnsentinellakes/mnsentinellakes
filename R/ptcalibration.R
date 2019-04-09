@@ -22,19 +22,34 @@
 ptcalibration=function(ptdata,lakeid,staffgauge,notes=NA){
 
   ptdata=as.data.frame(ptdata)
+  if(ncol(ptdata)==2){
+    ptdata["Date"]=as.Date(ptdata[,1])
+    ptdata["Time"]=as.character(ptdata[,1],format="%H:%M")
+    ptdata[,1]=NULL
+    ptdata=ptdata[,c(2,3,1)]
+  }
+
 
   ptdata[,3]=as.numeric(ptdata[,3])
   ptdata["date_time"]=as.POSIXct(paste(as.character(ptdata[,1]),as.character(ptdata[,2],format="%H:%M")), format="%Y-%m-%d %H:%M")
+  ptdata$Date=as.character(ptdata[,1])
+  ptdata$Time=as.character(ptdata[,2],format="%H:%M")
 
   staffgauge=staffgauge[staffgauge$Lake==mnsentinellakes::lakeid2name(lakeid),]
   staffgauge["date_time"]=as.POSIXct(paste(as.character(staffgauge$Date),as.character(staffgauge$Time,format="%H:%M")), format="%Y-%m-%d %H:%M")
+  staffgauge$Date=as.character(staffgauge$Date)
+  staffgauge$Time=as.character(staffgauge$Time,format="%H:%M")
+
   if(is.na(staffgauge$Time)){
     if(staffgauge$Date %in% ptdata[,1]){
       print("Method 1")
-      ptdataday=ptdata[as.Date(ptdata[,4])==as.Date(staffgauge$date_time),]
+      ptdataday=ptdata[as.Date(ptdata[,1])==as.Date(staffgauge$Date),]
       ptdatadaymean=mean(ptdataday[,3])
       offset=ptdatadaymean-as.numeric(as.character(staffgauge$Gauge_Reading))
-      offsetdatetime=staffgauge$date_time
+      originalvalue=ptdatadaymean
+
+      offsetdate=staffgauge$Date
+      offsettime=NA
       offsetmethod="Specific time not recorded for staff gauge reading, calculated the offset using the difference between the mean daily pressure transducer value and the staff gauge reading for the indicated date."
     }else{
       stop("The date of the staff gauge reading is not in the pressure transducer data.")
@@ -45,7 +60,9 @@ ptcalibration=function(ptdata,lakeid,staffgauge,notes=NA){
       ptdatatime=ptdata[ptdata[,4]==staffgauge$date_time,]
       offset=ptdatatime[,3]-staffgauge$Gauge_Reading
       ptdatadaymean=NA
-      offsetdatetime=staffgauge$date_time
+      originalvalue=ptdatatime[,3]
+      offsetdate=staffgauge$Date
+      offsettime=staffgauge$Time
       offsetmethod="Calculated the offset using the difference between the pressure transducer value and the staff gauge reading for the indicated date and time."
     }else{
       stop("The date and time of the staff gauge reading is not in the pressure transducer data.")
@@ -59,8 +76,8 @@ ptcalibration=function(ptdata,lakeid,staffgauge,notes=NA){
     dataoutput=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,"Date_Time"=ptdata[,4],
                           "Original_Vaue"=ptdata[,3],"Adjusted_Value"=round(ptdata[,3]-offset,digits = 2))
     datametadata=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,
-                            "Offset_Date_Time"=offsetdatetime,"Offset_value"=offset,
-                            "Offset_Method"=offsetmethod,"Notes"=notes)
+                            "Offset_Date"=offsetdate,"Offset_Time"=offsettime,"Transducer"=originalvalue,"Staff_Gauge"=staffgauge$Gauge_Reading,
+                            "Offset_value"=offset,"Offset_Method"=offsetmethod,"Notes"=notes)
 
     outputdata=list("Data"=dataoutput,"Metadata"=datametadata)
 
