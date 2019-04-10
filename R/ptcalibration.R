@@ -74,7 +74,7 @@ ptcalibration=function(ptdata,lakeid,staffgauge,notes=NA){
   }
 
     dataoutput=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,"Date_Time"=ptdata[,4],
-                          "Original_Vaue"=ptdata[,3],"Adjusted_Value"=round(ptdata[,3]-offset,digits = 2))
+                          "Transducer_Value"=ptdata[,3],"Adjusted_Value"=round(ptdata[,3]-offset,digits = 2))
     datametadata=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,
                             "Offset_Date"=offsetdate,"Offset_Time"=offsettime,"Transducer"=originalvalue,"Staff_Gauge"=staffgauge$Gauge_Reading,
                             "Offset_value"=offset,"Offset_Method"=offsetmethod,"Notes"=notes)
