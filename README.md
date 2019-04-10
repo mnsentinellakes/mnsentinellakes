@@ -80,3 +80,27 @@ lakenametoid(
   county = "Cook"
 )
 ```
+##### Fish Names
+This package includes a number of fish name lookup functions that allows the user to lookup the fish abbreviation, common name, or scientific name based upon the provided name.
+```
+#Abbreviation to Common Name
+fishabbrev2common("FRD")
+
+#Abbreviation to Scientific Name
+fishabbrev2scientific("FRD")
+
+#Common Name to Abbreviation
+fishcommon2abbrev("Freshwater Drum")
+
+#Common Name to Scientific Name
+fishcommon2scientific("Fresehwater Drum")
+
+#Some species include multiple common names
+fishcommon2scientific("Sheepshead")
+
+#Scientific Name to Abbreviation
+fishscientific2abbrev("Aplodinotus grunniens")
+
+#Scientific Name to Common Name
+fishscientific2common("Aplodinotus grunniens")
+```
