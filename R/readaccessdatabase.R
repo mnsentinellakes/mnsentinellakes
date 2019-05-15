@@ -6,12 +6,13 @@
 #' @keywords access database read import
 #' @return data.frame
 #' @family Sentinel Lakes Tools
-#' @export
 
 readaccessdatabase=function(database,sqtable){
+
   DB=RODBC::odbcConnectAccess2007(
     access.file = database,
     readOnlyOptimize=TRUE
+
   )
   output=RODBC::sqlFetch(
     channel = DB,
