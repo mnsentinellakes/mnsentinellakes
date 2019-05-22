@@ -12,7 +12,7 @@
 #' @export
 
 waterleveldownload = function(lakeid,metric=TRUE){
-  wtrlvldata=as.data.frame(data.table::fread(paste0("http://webapps5.dnr.state.mn.us/cgi-bin/lk_levels_dump.pl?format=csv&id=",lakeid)))
+  wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.pl?format=csv&id=",lakeid)))
 
   if (nrow(wtrlvldata)>0){
   wtrlvldata$ELEVATION=as.numeric(wtrlvldata$ELEVATION)
