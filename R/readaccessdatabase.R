@@ -6,6 +6,7 @@
 #' @keywords access database read import
 #' @return data.frame
 #' @family Sentinel Lakes Tools
+#' @export
 
 readaccessdatabase=function(database,sqtable){
 
