@@ -5,9 +5,9 @@
 \title{WQ Trend Plots}
 \usage{
 wqmonthtrendplots(plotdata, logtransform = FALSE,
-  saveto = paste0(getwd()), ptcolor = "blue", ptsize = 3,
-  pttype = 20, addlm = TRUE, lmcolor = "black", lmsize = 1,
-  lmtype = 2, includestats = TRUE, statstable = TRUE,
+  saveto = paste0(getwd()), includemonths = TRUE, ptcolor = "blue",
+  ptsize = 3, pttype = 20, addlm = TRUE, lmcolor = "black",
+  lmsize = 1, lmtype = 2, includestats = TRUE, statstable = TRUE,
   maxpvalue = 0.1)
 }
 \arguments{
@@ -16,6 +16,8 @@ wqmonthtrendplots(plotdata, logtransform = FALSE,
 \item{logtransform}{a logical indicating whether the statistics should be calulated using the natural log of the parameter values. Defaults to FALSE.}
 
 \item{saveto}{designates the folder where the plots and table should be saved. Defaults to the working directory.}
+
+\item{includemonths}{a logical indicating whether the months including in the analysis should be displayed on the x-axis.}
 
 \item{ptcolor}{designates the color of the points in the plots. Defaults to "blue".}
 
