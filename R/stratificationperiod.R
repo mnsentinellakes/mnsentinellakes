@@ -53,8 +53,9 @@ stratificationperiod=function(tempdata,consecutivedays=10){
       enddaytest=as.logical(stratification[i,2]==TRUE & stratification[(i+1),2]==FALSE & stratification[(i-j),2]==TRUE)
       endtest=rbind(endtest,enddaytest)
     }
+
     #If all days are TRUE, the day is considered to be the start or end of stratification
-    if (all(starttest==TRUE)){
+    if (all(starttest==TRUE) & all(!is.na(starttest))){
       startday=data.frame("Date"=stratification[i,1],"Event"="S")
       stratevents=rbind(stratevents,startday)
     }
