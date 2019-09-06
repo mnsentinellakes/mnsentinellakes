@@ -16,7 +16,7 @@
 #' @export
 
 weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperature","Dew Point","Relative Humidity","Wind Direction","Wind Speed",
-                                                                                 "Altimeter","Precipitation","Gust Speed")){
+                                                                                 "Altimeter","Precipitation","Gust Speed","Clouds")){
 
   #Standardize lake name for lookup
 
@@ -104,12 +104,12 @@ weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperatur
     }
 
     #Cloud Coverage
-    sky=""
-    # if(input$skyl==TRUE){
-    #   sky="&data=skyc1&data=skyc2&data=skyc3&data=skyl1&data=skyl2&data=skyl3"
-    # }else{
-    #   sky=""
-    # }
+
+    if("Clouds" %in% parameters){
+      sky="&data=skyc1&data=skyc2&data=skyc3&data=skyl1&data=skyl2&data=skyl3"
+    }else{
+      sky=""
+    }
 
     #Compile URL based upon the selected parameters
     wthrdata=paste0(wthrdata,atp,dwp,rlh,wdr,wsd,alt,slp,pcp,vsb,gsd,sky,
