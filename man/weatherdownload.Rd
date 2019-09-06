@@ -7,7 +7,7 @@
 weatherdownload(lakeid, startdate, enddate,
   parameters = c("Air Temperature", "Dew Point", "Relative Humidity",
   "Wind Direction", "Wind Speed", "Altimeter", "Precipitation",
-  "Gust Speed"))
+  "Gust Speed", "Clouds"))
 }
 \arguments{
 \item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
