@@ -42,11 +42,8 @@ weatherevents = function(lakeid,startdate,enddate){
     }
 
     #precip
-    if(nrow(weatherday[which(weatherday$p01m>0),])/nrow(weatherday)>.5){
-      precip=TRUE
-    }else{
-      precip=FALSE
-    }
+    precip=sum(weatherday$p01m)
+
 
     #Clouds
     if(nrow(weatherday[which(weatherday$skyc1=="OVC"|weatherday$skyc2=="OVC"|weatherday$skyc3=="OVC"),])/nrow(weatherday)>.5){
