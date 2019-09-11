@@ -20,10 +20,11 @@ weatherevents = function(lakeid,startdate,enddate){
     lakeid = lakeid,
     startdate = startdate,
     enddate = enddate,
-    parameters = c("Wind Speed","Precipitation","Clouds")
+    parameters = c("Air Temperature","Wind Speed","Precipitation","Clouds")
   )
 
   weatherdata$valid=as.POSIXct(weatherdata$valid,format = "%Y-%m-%d %H:%M")
+  weatherdata$tmpc=suppressWarnings(as.numeric(weatherdata$tmpc))
   weatherdata$sknt = suppressWarnings(as.numeric(weatherdata$sknt))
   weatherdata$p01m = suppressWarnings(as.numeric(weatherdata$p01m))
 
@@ -41,9 +42,13 @@ weatherevents = function(lakeid,startdate,enddate){
       windy=FALSE
     }
 
+    #Temp
+    meantemp=round(mean(weatherday$tmpc,na.rm = TRUE),digits = 2)
+    maxtemp=max(weatherday$tmpc,na.rm = TRUE)
+    mintemp=min(weatherday$tmpc,na.rm = TRUE)
+
     #precip
     precip=sum(weatherday$p01m)
-
 
     #Clouds
     if(nrow(weatherday[which(weatherday$skyc1=="OVC"|weatherday$skyc2=="OVC"|weatherday$skyc3=="OVC"),])/nrow(weatherday)>.5){
@@ -51,7 +56,8 @@ weatherevents = function(lakeid,startdate,enddate){
     }else{
       cloudy = FALSE
     }
-    weatheroccrow=data.frame("LakeId"=lakeid,'Date'=as.Date(i,origin = "1970-01-01"),"Wind"=windy,"Precip"=precip,"Clouds"=cloudy)
+    weatheroccrow=data.frame("LakeId"=lakeid,'Date'=as.Date(i,origin = "1970-01-01"),"Mean_Temp"=meantemp,"Max_Temp"=maxtemp,"Min_Temp"=mintemp,
+                             "Wind"=windy,"Precip"=precip,"Clouds"=cloudy)
     weatherocc=rbind(weatherocc,weatheroccrow)
   }
 
