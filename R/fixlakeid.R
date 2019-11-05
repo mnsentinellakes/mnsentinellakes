@@ -11,11 +11,8 @@
 #'
 #' @export
 
-
 fixlakeid=function(lakeid){
   lakeid=gsub("-","",as.character(lakeid))
   lakeid[nchar(lakeid)==7]=paste0("0",lakeid[nchar(lakeid)<8])
   return(lakeid)
 }
-
-
