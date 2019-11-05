@@ -27,5 +27,3 @@ lakeid2name=function(lakeid){
   }
   return(lakename)
 }
-
-
