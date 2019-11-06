@@ -14,17 +14,35 @@
 
 lakename2id=function(lakename,county=NULL){
 
-  lakedata=mnsentinellakes::mnlakesmetadata
+  getids=lapply(
+    lakename, function(x){
+      ids=mnsentinellakes::mnlakesmetadata$LakeId
+      names(ids)=mnsentinellakes::mnlakesmetadata$Lake
+      ids=unname(ids[names(ids) == x])
+    }
+  )
 
-  if (!is.null(county)){
-    lakedata=lakedata[lakedata$County==county,]
-  }
-  lakeoutput=lakedata$LakeId[lakedata$Lake==lakename]
+  if(!is.null(county)){
 
-  if (length(lakeoutput)>1)(
-    warning("There are multiple lakes with this name.")
-  )else if (length(lakeoutput)==0){
-    warning("There are no lakes with this name.")
+    getids=lapply(1:length(getids), function(x){
+      countyselect=county[x]
+      idselect=unlist(getids[x])
+
+      getcounties=mnsentinellakes::mnlakesmetadata$LakeId
+      names(getcounties)=mnsentinellakes::mnlakesmetadata$County
+      countyids=as.vector(unname(getcounties[names(getcounties) %in% countyselect]))
+      unlist(idselect[idselect %in% countyids])
+    }
+    )
   }
-  return(lakeoutput)
+  getids=unlist(getids)
+
+  if (length(getids)>length(lakename)){
+    if (length(lakename)==1){
+      warning("There are multiple lakes with this name")
+    }else if (length(lakename)>1){
+      warning("There are multiple lakes with one or both of these names")
+    }
+  }
+  return(getids)
 }
