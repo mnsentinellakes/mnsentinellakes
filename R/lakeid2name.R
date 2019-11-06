@@ -19,7 +19,7 @@ lakeid2name=function(lakeid){
   names(getnames)=mnsentinellakes::mnlakesmetadata$LakeId
 
   #Select lake names based on the input lakeid
-  lakename=unname(getnames[fixlakeid(lakeid)])
+  lakename=unname(getnames[mnsentinellakes::fixlakeid(lakeid)])
 
   if (length(lakename)==0){
     lakename=NULL
