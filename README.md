@@ -72,10 +72,10 @@ fixlakeid(6000200)
 fixlakeid("21-0057-00")
 
 #Look up a lake name based upon the LakeId
-lakeidtoname("11041300")
+lakeid2name("11041300")
 
 #Look up LakeIds from a lake name and county
-lakenametoid(
+lakename2id(
   lakename = "Greenwood",
   county = "Cook"
 )
