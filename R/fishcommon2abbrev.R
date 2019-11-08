@@ -10,11 +10,8 @@
 #' @export
 
 fishcommon2abbrev=function(commonname){
-  if(commonname %in% mnsentinellakes::fishabbreviations$Name){
-    fishabbrevout=mnsentinellakes::fishabbreviations$Code[mnsentinellakes::fishabbreviations$Name==commonname]
-  }else{
-    warning("No abbreviation associated with this name")
-    fishabbrevout=NULL
-  }
-  return(fishabbrevout)
+  getabbrev=mnsentinellakes::fishabbreviations$Code
+  names(getabbrev)=mnsentinellakes::fishabbreviations$Name
+  fishabbrev=unname(getabbrev[tools::toTitleCase(commonname)])
+  return(fishabbrev)
 }

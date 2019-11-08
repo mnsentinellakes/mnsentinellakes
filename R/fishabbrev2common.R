@@ -10,7 +10,6 @@
 #' @export
 
 fishabbrev2common=function(fishabbreviation){
-
     getcommon=mnsentinellakes::fishabbreviations$Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
     names(getcommon)=mnsentinellakes::fishabbreviations$Code[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
     fishcommon=unname(getcommon[fishabbreviation])
