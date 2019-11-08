@@ -10,12 +10,9 @@
 #' @export
 
 fishabbrev2scientific=function(fishabbreviation){
-  if(fishabbreviation %in% mnsentinellakes::fishabbreviations$Code){
-    fishnameout=mnsentinellakes::fishabbreviations$Scientific_Name[mnsentinellakes::fishabbreviations$Code==fishabbreviation &
-                                                                     mnsentinellakes::fishabbreviations$Prime==TRUE]
-  }else{
-    warning("No name associated with this abbreviation")
-    fishnameout=NULL
-  }
-  return(fishnameout)
+  getscientific=mnsentinellakes::fishabbreviations$Scientific_Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+  names(getscientific)=mnsentinellakes::fishabbreviations$Code[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+  fishscientific=unname(getscientific[fishabbreviation])
+
+  return(fishscientific)
 }
