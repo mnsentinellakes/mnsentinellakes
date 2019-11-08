@@ -10,12 +10,10 @@
 #' @export
 
 fishabbrev2common=function(fishabbreviation){
-  if(fishabbreviation %in% mnsentinellakes::fishabbreviations$Code){
 
-    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Code==fishabbreviation & mnsentinellakes::fishabbreviations$Prime==TRUE]
-  }else{
-    warning("No name associated with this abbreviation")
-    fishnameout=NULL
-  }
-  return(fishnameout)
+    getcommon=mnsentinellakes::fishabbreviations$Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+    names(getcommon)=mnsentinellakes::fishabbreviations$Code[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+    fishcommon=unname(getcommon[fishabbreviation])
+
+  return(fishcommon)
 }
