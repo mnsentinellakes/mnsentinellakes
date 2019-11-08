@@ -10,11 +10,8 @@
 #' @export
 
 fishcommon2scientific=function(commonname){
-  if(commonname %in% mnsentinellakes::fishabbreviations$Name){
-    fishnameout=mnsentinellakes::fishabbreviations$Scientific_Name[mnsentinellakes::fishabbreviations$Name==commonname]
-  }else{
-    warning("No scientific name associated with this common name")
-    fishnameout=NULL
-  }
-  return(fishnameout)
+  getscientific=mnsentinellakes::fishabbreviations$Scientific_Name
+  names(getscientific)=mnsentinellakes::fishabbreviations$Name
+  fishscientific=unname(getscientific[tools::toTitleCase(commonname)])
+  return(fishscientific)
 }

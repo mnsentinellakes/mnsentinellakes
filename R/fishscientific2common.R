@@ -10,13 +10,8 @@
 #' @export
 
 fishscientific2common=function(scientificname){
-  if(scientificname %in% mnsentinellakes::fishabbreviations$Scientific_Name){
-    fishnameout=mnsentinellakes::fishabbreviations$Name[mnsentinellakes::fishabbreviations$Scientific_Name==scientificname &
-                                                          mnsentinellakes::fishabbreviations$Prime==TRUE]
-    fishnameout=fishnameout[!is.na(fishnameout)]
-  }else{
-    warning("No common name associated with this scientific name")
-    fishnameout=NULL
-  }
-  return(fishnameout)
+  getcommon=mnsentinellakes::fishabbreviations$Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+  names(getcommon)=mnsentinellakes::fishabbreviations$Scientific_Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
+  fishcommon=unname(getcommon[scientificname])
+  return(fishcommon)
 }
