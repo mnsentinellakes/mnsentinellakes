@@ -12,7 +12,7 @@ wqstations = function(lakeid){
   if (lakeid %in% unique(mnsentinellakes::sentinelmnpcastations$LakeId)){
     stations=mnsentinellakes::sentinelmnpcastations$ID_CODE[mnsentinellakes::sentinelmnpcastations$LakeId==lakeid]
   }else if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId)){
-    stations=mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId==lakeid]
+    stations=mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId==lakeid & mnsentinellakes::mnpcastations$Status=="Active"]
   }else{
     stations=NULL
 
