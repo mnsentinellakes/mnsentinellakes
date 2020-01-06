@@ -4,7 +4,7 @@
 #' @param fishsurvey results from the fishsurveydata() function.
 #' @param fishspecies a list of fish species names present in the fishspeciesmetadata table. Valid species include: "White Sucker", "Black Crappie", "Bluegill",
 #' "Largemouth Bass", "Rock Bass", "Smallmouth Bass", "Muskellunge", "Northern Pike", "Black Bullhead", "Brown Bullhead", "Channel Catfish", "Yellow Bullhead",
-#' "White Bass", "Walleye", "Yellow Perch", and "Lake Trout".
+#' "White Bass", "Walleye", "Yellow Perch", "Cisco", and "Lake Trout".
 #' @param startyear a numeric of the earliest year under consideration in the YYYY format. Default is NULL.
 #' @param endyear a numeric of the latest year under consideration in the YYYY format. Default is NULL.
 #' @keywords fish lakefinder survey gear
