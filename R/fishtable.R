@@ -1,6 +1,14 @@
 #' Fish Data table
 #'
 #' This function selects fish catch data for the appropriate gear for the list of fish species in the fishmetadata table.
+#'
+#' Some surveys use Shallow and Deep gillnets as opposed to Standard gillnets. When this occurs, the total catch between those two gear types will be added and divided by the
+#' gear count.
+#'
+#' Some data have different units for total weights and average weights. In some cases both measurements are in pounds, but in other cases total weights are in grams and
+#' average weights are in pounds. Currently this function maintains these differences.
+#'
+#'
 #' @param fishsurvey results from the fishsurveydata() function.
 #' @param fishspecies a list of fish species names present in the fishspeciesmetadata table. Valid species include: "White Sucker", "Black Crappie", "Bluegill",
 #' "Largemouth Bass", "Rock Bass", "Smallmouth Bass", "Muskellunge", "Northern Pike", "Black Bullhead", "Brown Bullhead", "Channel Catfish", "Yellow Bullhead",
@@ -23,6 +31,7 @@
 #' @export
 
 fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){
+
   if(!is.null(fishsurvey)){
     if (!is.null(startyear)){
       fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date)>=startyear,]
@@ -35,11 +44,48 @@ fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){
     LOIData=NULL
     for (i in 1:length(fishspecies)){
 
-      speciescode=mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
-      speciesgear=mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name==fishspecies[i]]
+      speciescode=mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]]
+      speciesgear=unique(mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]])
+
       if(!is.null(fishspecies[i])){
         if (!is.na(fishspecies[i])){
-          LOIDatarow=fishsurvey[fishsurvey$species==speciescode & fishsurvey$gear==speciesgear,]
+          LOIDatarow=fishsurvey[fishsurvey$species %in% speciescode & fishsurvey$gear %in% speciesgear,]
+
+          if (speciesgear=="Standard gill nets"){
+            #Additional data for lakes with shallow and deep gill data
+            if ("Shallow gill nets" %in% fishsurvey$gear | "Deep gill nets"%in% fishsurvey$gear){
+              LOIDataadd=fishsurvey[which(fishsurvey$species %in% speciescode & fishsurvey$gear %in% c("Shallow gill nets","Deep gill nets")),]
+              LOIDatacombo=NULL
+              for (j in unique(LOIDataadd$Date)){
+
+                LOIDataselect=LOIDataadd[which(LOIDataadd$Date==j),]
+
+                cpue=round(sum(LOIDataselect$totalCatch)/sum(LOIDataselect$gearCount),digits = 2)
+                totalcatch=sum(LOIDataselect$totalCatch)
+                totalweight=sum(LOIDataselect$totalWeight)
+
+                if ((mean(as.numeric(LOIDataselect$averageWeight))-(totalweight/totalcatch))<=0.0001){
+                  averageweight=round(totalweight/totalcatch,digits = 2)
+                }else{
+                  averageweight=round((totalweight/totalcatch)*0.00220462,digits = 2)
+                }
+                gearcount=sum(LOIDataselect$gearCount)
+
+                LOIDatacomborow=data.frame("quartileCount"="N/A","CPUE"=cpue,"totalCatch"=totalcatch,"species"=unique(LOIDataselect$species),"totalWeight"=totalweight,
+                                           "quartileWeight"="N/A","averageWeight"=averageweight,"gearCount"=gearcount,
+                                           "gear"="Shallow and Deep gill nets","Date"=as.Date(j,origin = "1970-01-01"),"LakeId"=unique(LOIDataselect$LakeId),
+                                           "Ecoregion"=unique(LOIDataselect$Ecoregion))
+
+                if (LOIDatacomborow$totalWeight/LOIDatacomborow$totalCatch!=LOIDatacomborow$averageWeight){
+                  LOIDatacomborow$averageWeight=round(LOIDatacomborow$totalWeight/LOIDatacomborow$totalCatch*0.00220462,digits = 2)
+                }
+
+                LOIDatacombo=rbind(LOIDatacombo,LOIDatacomborow)
+              }
+              LOIDatarow=rbind(LOIDatarow,LOIDatacombo)
+            }
+          }
+
           if (nrow(LOIDatarow)>0){
             LOIDatarow=LOIDatarow
           }else{
