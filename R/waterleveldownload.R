@@ -15,10 +15,10 @@ waterleveldownload = function(lakeid,metric=TRUE){
 
   #Quick fix for Belle LakeId
   if(lakeid=="47004901"){
-    wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.pl?format=csv&id=47004900")))
+    wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.cgi?format=csv&id=47004900")))
   }else{
 
-    wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.pl?format=csv&id=",lakeid)))
+    wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.cgi?format=csv&id=",lakeid)))
   }
 
   if (nrow(wtrlvldata)>0){
