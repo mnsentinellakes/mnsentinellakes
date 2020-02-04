@@ -125,7 +125,12 @@ weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperatur
     wthrdld=data.table::fread(wthrdata)
     wthrdld=as.data.frame(wthrdld)
 
-    wthrdld["LakeId"]=lakeid
+    if (nrow(wthrdld)>0){
+      wthrdld["LakeId"]=lakeid
+    }else{
+      wthrdld=NULL
+      warning("No weather data for these parameters.")
+    }
   }else{
     wthrdld=NULL
     warning("No weather data for this lake.")
