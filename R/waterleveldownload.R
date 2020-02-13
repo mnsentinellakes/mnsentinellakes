@@ -22,17 +22,18 @@ waterleveldownload = function(lakeid,metric=TRUE){
   }
 
   if (nrow(wtrlvldata)>0){
-  wtrlvldata$ELEVATION=as.numeric(wtrlvldata$ELEVATION)
-  if (metric==TRUE){
-  wtrlvldata["elev_m"]=round(as.numeric(wtrlvldata$ELEVATION*0.3048),digits = 2)
-  wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
-                      "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_m"=wtrlvldata$elev_m,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
+    wtrlvldata$ELEVATION=as.numeric(wtrlvldata$ELEVATION)
+    wtrlvldata$READ_DATE=as.Date(as.character(wtrlvldata$READ_DATE))
+    if (metric==TRUE){
+      wtrlvldata["elev_m"]=round(as.numeric(wtrlvldata$ELEVATION*0.3048),digits = 2)
+      wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
+                          "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_m"=wtrlvldata$elev_m,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
+    }else{
+      wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
+                          "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_ft"=wtrlvldata$ELEVATION,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
+    }
   }else{
-    wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
-                        "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_ft"=wtrlvldata$ELEVATION,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
-  }
-  }else{
-    wtrlvldata=NULL
+    wtrlvldf=NULL
     warning("No water level data available.")
   }
   return(wtrlvldf)
