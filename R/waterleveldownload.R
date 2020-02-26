@@ -11,8 +11,9 @@
 #'
 #' @export
 
-waterleveldownload = function(lakeid,metric=TRUE){
 
+
+waterleveldownload = function(lakeid,metric=TRUE){
   #Quick fix for Belle LakeId
   if(lakeid=="47004901"){
     wtrlvldata=as.data.frame(data.table::fread(paste0("http://files.dnr.state.mn.us/cgi-bin/lk_levels_dump.cgi?format=csv&id=47004900")))
@@ -26,11 +27,11 @@ waterleveldownload = function(lakeid,metric=TRUE){
     wtrlvldata$READ_DATE=as.Date(as.character(wtrlvldata$READ_DATE))
     if (metric==TRUE){
       wtrlvldata["elev_m"]=round(as.numeric(wtrlvldata$ELEVATION*0.3048),digits = 2)
-      wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
-                          "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_m"=wtrlvldata$elev_m,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
+      wtrlvldf=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_m"=wtrlvldata$elev_m,
+                          "Datum_Adj"=wtrlvldata$DATUM_ADJ)
     }else{
-      wtrlvldf=data.frame("Lake"=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::fixlakeid(mnsentinellakes::mnlakesmetadata$LakeId)==lakeid],
-                          "LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_ft"=wtrlvldata$ELEVATION,"Datum_Adj"=wtrlvldata$DATUM_ADJ)
+      wtrlvldf=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,"Date"=wtrlvldata$READ_DATE,"Elevation_ft"=wtrlvldata$ELEVATION,
+                          "Datum_Adj"=wtrlvldata$DATUM_ADJ)
     }
   }else{
     wtrlvldf=NULL
