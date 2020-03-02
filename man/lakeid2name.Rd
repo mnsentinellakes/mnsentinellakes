@@ -22,8 +22,7 @@ lakeid2name("02000400")
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
   \code{\link{fixlakeid}}, \code{\link{gpx2shp}},
-  \code{\link{lakename2id}},
-  \code{\link{readaccessdatabase}}
+  \code{\link{lakename2id}}
 }
 \concept{Sentinel Lakes Tools}
 \keyword{dowlknum}

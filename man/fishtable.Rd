@@ -11,7 +11,7 @@ fishtable(fishsurvey, fishspecies, startyear = NULL, endyear = NULL)
 
 \item{fishspecies}{a list of fish species names present in the fishspeciesmetadata table. Valid species include: "White Sucker", "Black Crappie", "Bluegill",
 "Largemouth Bass", "Rock Bass", "Smallmouth Bass", "Muskellunge", "Northern Pike", "Black Bullhead", "Brown Bullhead", "Channel Catfish", "Yellow Bullhead",
-"White Bass", "Walleye", "Yellow Perch", and "Lake Trout".}
+"White Bass", "Walleye", "Yellow Perch", "Cisco", and "Lake Trout".}
 
 \item{startyear}{a numeric of the earliest year under consideration in the YYYY format. Default is NULL.}
 
@@ -22,6 +22,13 @@ a data.frame of fish catch data
 }
 \description{
 This function selects fish catch data for the appropriate gear for the list of fish species in the fishmetadata table.
+}
+\details{
+Some surveys use Shallow and Deep gillnets as opposed to Standard gillnets. When this occurs, the total catch between those two gear types will be added and divided by the
+gear count.
+
+Some data have different units for total weights and average weights. In some cases both measurements are in pounds, but in other cases total weights are in grams and
+average weights are in pounds. Currently this function maintains these differences.
 }
 \examples{
 #Retrieve the lakefinder data

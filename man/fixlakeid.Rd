@@ -23,8 +23,7 @@ fixlakeid("06-0002-00")
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{addunderscore}},
   \code{\link{gpx2shp}}, \code{\link{lakeid2name}},
-  \code{\link{lakename2id}},
-  \code{\link{readaccessdatabase}}
+  \code{\link{lakename2id}}
 }
 \concept{Sentinel Lakes Tools}
 \keyword{dowlknum}

@@ -22,7 +22,6 @@ addunderscore("St. James")
 \seealso{
 Other Sentinel Lakes Tools: \code{\link{fixlakeid}},
   \code{\link{gpx2shp}}, \code{\link{lakeid2name}},
-  \code{\link{lakename2id}},
-  \code{\link{readaccessdatabase}}
+  \code{\link{lakename2id}}
 }
 \concept{Sentinel Lakes Tools}
