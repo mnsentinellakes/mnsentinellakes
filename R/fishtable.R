@@ -32,6 +32,9 @@
 
 fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){
 
+  fishsurvey=mnsentinellakes::fishsurveydata(mnsentinellakes::lakefinderdownload(mnsentinellakes::lakename2id("Carlos","Douglas")))
+  fishspecies = ""
+
   if(!is.null(fishsurvey)){
     if (!is.null(startyear)){
       fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date)>=startyear,]
