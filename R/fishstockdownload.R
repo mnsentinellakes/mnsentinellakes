@@ -18,12 +18,13 @@ fishstockdownload=function(lakeid){
 
   downloaddata=rvest::html_table(rvest::html_nodes(xml2::read_html(buildurl),'table'))
 
+
   #Format the data
   if (length(downloaddata)>0){
     downloaddata=downloaddata[[1]]
 
     #Fill in blank years using the year of the row above
-    downloaddata=tidyr::fill(downloaddata,Year)
+    downloaddata=tidyr::fill(downloaddata,downloaddata$Year)
 
     downloaddata$Number=as.numeric(gsub(",","",downloaddata$Number))
     downloaddata=data.frame("Lake"=mnsentinellakes::lakeid2name(lakeid),"LakeId"=lakeid,"Year"=downloaddata$Year,"Species"=downloaddata$Species,"Size"=downloaddata$Size,
