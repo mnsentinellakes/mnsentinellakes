@@ -7,6 +7,7 @@
 #' @return a data.frame with statistics for each species' CPUE.
 #' @family Fish
 #' @examples
+#' \dontrun{
 #' #Download the data
 #' x <- lakefinderdownload("21005700")
 #'
@@ -21,7 +22,7 @@
 #'       fishspecies = c("Bluegill","Largemouth Bass"))
 #'
 #' fishtrendstats(statdata = z)
-#'
+#' }
 #' @export
 fishtrendstats=function(statdata,logtransform=TRUE){
   Lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==unique(statdata$LakeId)]

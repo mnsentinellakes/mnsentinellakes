@@ -6,7 +6,7 @@
 #' @param metric Logical indicating if the elevations should be in meters. If TRUE, the data will be in meters, if FALSE, the data will be in feet. The default is TRUE.
 #' @keywords water levels Minnesota data
 #' @return a data.frame with water level data
-#' examples
+#' @examples
 #' x <- waterleveldownload("11041300")
 #'
 #' @export

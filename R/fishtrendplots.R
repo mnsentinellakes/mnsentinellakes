@@ -21,6 +21,7 @@
 #' @importFrom rlang .data
 #' @family Fish
 #' @examples
+#' \dontrun{
 #' #Download the data
 #' x <- lakefinderdownload("21005700")
 #'
@@ -35,7 +36,7 @@
 #'       fishspecies = c("Bluegill","Largemouth Bass"))
 #'
 #' fishtrendplots(plotdata = z)
-#'
+#' }
 #' @export
 
 fishtrendplots=function(plotdata,logtransform=TRUE,saveto=paste0(getwd()),ptcolor="blue",ptsize=3,pttype=20,addlm=TRUE,lmcolor="black",lmsize=1,

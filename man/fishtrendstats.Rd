@@ -18,6 +18,7 @@ a data.frame with statistics for each species' CPUE.
 This function calculates linear trend statistics using data download from the MNDNR Lakefinder website using the output of the fishtable() function.
 }
 \examples{
+\dontrun{
 #Download the data
 x <- lakefinderdownload("21005700")
 
@@ -32,7 +33,7 @@ z <-fishtable(
       fishspecies = c("Bluegill","Largemouth Bass"))
 
 fishtrendstats(statdata = z)
-
+}
 }
 \seealso{
 Other Fish: \code{\link{fishabbrev2common}},

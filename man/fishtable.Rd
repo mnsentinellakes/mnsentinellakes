@@ -31,6 +31,7 @@ Some data have different units for total weights and average weights. In some ca
 average weights are in pounds. Currently this function maintains these differences.
 }
 \examples{
+\dontrun{
 #Retrieve the lakefinder data
 x <- lakefinderdownload("11041300")
 #Extract the fish survey data
@@ -39,7 +40,7 @@ y <- fishsurveydata(x)
 z <-fishtable(
       fishsurvey = y,
       fishspecies = c("Bluegill","Largemouth Bass"))
-
+}
 }
 \seealso{
 Other Fish: \code{\link{fishabbrev2common}},

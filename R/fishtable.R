@@ -19,6 +19,7 @@
 #' @return a data.frame of fish catch data
 #' @family Fish
 #' @examples
+#' \dontrun{
 #' #Retrieve the lakefinder data
 #' x <- lakefinderdownload("11041300")
 #' #Extract the fish survey data
@@ -27,7 +28,7 @@
 #' z <-fishtable(
 #'       fishsurvey = y,
 #'       fishspecies = c("Bluegill","Largemouth Bass"))
-#'
+#' }
 #' @export
 
 fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){

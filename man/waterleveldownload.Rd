@@ -13,12 +13,14 @@ waterleveldownload(lakeid, metric = TRUE)
 }
 \value{
 a data.frame with water level data
-examples
-x <- waterleveldownload("11041300")
 }
 \description{
 This function downloads water level data from the MNDNR Lakefinder website and converts the elevation to meters. The data are already formatted into the
 Sentinel Lakes format.
+}
+\examples{
+x <- waterleveldownload("11041300")
+
 }
 \keyword{Minnesota}
 \keyword{data}

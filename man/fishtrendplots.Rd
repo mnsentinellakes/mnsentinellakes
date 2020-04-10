@@ -45,6 +45,7 @@ This function creates and saves fish trend scatter plots comparing CPUE across s
 the fishstats() function.
 }
 \examples{
+\dontrun{
 #Download the data
 x <- lakefinderdownload("21005700")
 
@@ -59,7 +60,7 @@ z <-fishtable(
       fishspecies = c("Bluegill","Largemouth Bass"))
 
 fishtrendplots(plotdata = z)
-
+}
 }
 \seealso{
 Other Fish: \code{\link{fishabbrev2common}},
