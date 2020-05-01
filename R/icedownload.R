@@ -12,6 +12,7 @@
 #' }
 #' @export
 
+
 icedownload=function(lakeid){
 
   lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==mnsentinellakes::fixlakeid(lakeid)]
@@ -45,6 +46,7 @@ icedownload=function(lakeid){
       reshapedf=NULL
 
       for (k in 0:((nrow(x)/3)-1)){
+        # k=1
         selection=(k*3)+c(1,2,3)
         rows=x[selection,]
 
@@ -53,7 +55,11 @@ icedownload=function(lakeid){
         #Source
         sourcerow=rows$Value[which(rows$Header=="source")]
         #Comment
-        commentrow=rows$Value[which(rows$Header=="comments")]
+        if ("comments" %in% rows$Header){
+          commentrow=rows$Value[which(rows$Header=="comments")]
+        }else{
+          commentrow=""
+        }
         reshaperow=data.frame("Date"=daterow,"Source"=sourcerow,"Comment"=commentrow)
         reshapedf=rbind(reshapedf,reshaperow)
       }
