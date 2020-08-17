@@ -14,8 +14,15 @@
 wqdatadownload = function(stationids){
   wqdata=NULL
   for (i in stationids) {
-    wqdatadown=as.data.frame(data.table::fread(paste0("http://cf.pca.state.mn.us/water/watershedweb/wdip/download_eda.cfm?DOWNLOADSTATION=",i),
-                                               stringsAsFactors = FALSE))
+    wqdatadown = as.data.frame(
+      data.table::fread(
+        paste0("https://services.pca.state.mn.us/api/v1/surfacewater/monitoring-stations/results?stationId=",i,"&format=csv"),
+        stringsAsFactors = FALSE
+      )
+    )
+
+
+
     if (nrow(wqdatadown)>0){
       wqdata=rbind(wqdata,wqdatadown)
     }
