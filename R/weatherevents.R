@@ -23,7 +23,7 @@ weatherevents = function(lakeid,startdate,enddate){
     parameters = c("Air Temperature","Wind Speed","Precipitation","Clouds")
   )
 
-  weatherdata$valid=as.POSIXct(weatherdata$valid,format = "%Y-%m-%d %H:%M")
+  weatherdata$valid=as.POSIXct(weatherdata$valid,format = "%Y-%m-%d %H:%M",tz = "UTC")
   weatherdata$tmpc=suppressWarnings(as.numeric(weatherdata$tmpc))
   weatherdata$sknt = suppressWarnings(as.numeric(weatherdata$sknt))
   weatherdata$p01m = suppressWarnings(as.numeric(weatherdata$p01m))
