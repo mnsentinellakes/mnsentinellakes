@@ -16,6 +16,10 @@
 #'
 weatherevents = function(lakeid,startdate,enddate){
 
+  lakeid = "06000200"
+  startdate = "2017-01-01"
+  enddate = "2021-03-19"
+
   weatherdata=mnsentinellakes::weatherdownload(
     lakeid = lakeid,
     startdate = startdate,
