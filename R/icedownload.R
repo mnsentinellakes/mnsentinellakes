@@ -68,19 +68,22 @@ icedownload=function(lakeid){
 
     iceoutput=rbind(iceoutput,reshapedf)
   }
-  iceoutput$Date=as.Date(iceoutput$Date)
-  iceoutput=iceoutput[order(iceoutput$Date),]
+  if (!is.null(iceoutput)){
+    iceoutput$Date=as.Date(iceoutput$Date)
+    iceoutput=iceoutput[order(iceoutput$Date),]
 
-  iceoutput=data.frame("Lake"=lakename,"LakeId"=lakeid,"Date"=iceoutput$Date,"Ice_Status"=iceoutput$Ice_Status,
-                       "Source"=iceoutput$Source,"Comments"=iceoutput$Comment)
-
+    iceoutput=data.frame("Lake"=lakename,"LakeId"=lakeid,"Date"=iceoutput$Date,"Ice_Status"=iceoutput$Ice_Status,
+                         "Source"=iceoutput$Source,"Comments"=iceoutput$Comment)
+  }else{
+    warning("No ice data for this lake.")
+  }
   }else{
     iceoutput=print("No ice data for this lake")
   }
 
-  if (is.null(iceoutput)){
-    warning("No ice data for this lake.")
-  }
+  # if (is.null(iceoutput)){
+  #   warning("No ice data for this lake.")
+  # }
 
 
   return(iceoutput)
