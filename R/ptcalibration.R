@@ -57,7 +57,7 @@ ptcalibration=function(ptdata,lakeid,staffgauge,notes=NA){
   }else{
     if(staffgauge$Date %in% ptdata[,1] & staffgauge$Time %in% ptdata[,2]){
       print("Method 2")
-      ptdatatime=ptdata[ptdata[,4]==staffgauge$date_time,]
+      ptdatatime = ptdata[which(ptdata[,4]==staffgauge$date_time),]
       offset=ptdatatime[,3]-staffgauge$Gauge_Reading
       ptdatadaymean=NA
       originalvalue=ptdatatime[,3]
