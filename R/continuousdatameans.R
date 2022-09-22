@@ -19,40 +19,44 @@
 #' }
 #' @export
 
-continuousdatameans=function(contdata,timedata,stratifieddata,period=c("daily" | "weekly" | "monthly" | "yearly")){
+continuousdatameans = function(contdata, timedata, stratifieddata, period = c("daily" | "weekly" | "monthly" | "yearly")){
 
-    datacombine=data.frame("Contdata"=contdata,"Time"=timedata,"Stratdata"=as.character(stratifieddata),stringsAsFactors = FALSE)
+    datacombine = data.frame("Contdata" = contdata,"Time" = timedata,"Stratdata" = as.character(stratifieddata),stringsAsFactors = FALSE)
 
 
     if(any(is.na(datacombine$Time))){
-      datacombine=datacombine[!is.na(datacombine$Time),]
+      datacombine = datacombine[!is.na(datacombine$Time),]
       warning("Removed NAs from timedata")
     }
 
     if(any(is.na(datacombine$Stratdata))){
-      datacombine$Stratdata[is.na(datacombine$Stratdata)]="No Data"
+      datacombine$Stratdata[is.na(datacombine$Stratdata)] = "No Data"
     }
 
-    analysisresults=NULL
+    analysisresults = NULL
     for (i in unique(datacombine$Stratdata)) {
-
-      analysisdata=datacombine[which(datacombine$Stratdata==i),]
-      analysisdata.xts=xts::xts(analysisdata$Contdata,order.by=analysisdata$Time)
-      if(period=="daily"){
-        analysismean.xts=xts::apply.daily(analysisdata.xts,"mean")
-      }else if(period=="weekly"){
-        analysismean.xts=xts::apply.weekly(analysisdata.xts,"mean")
-      }else if(period=="monthly"){
-        analysismean.xts=xts::apply.monthly(analysisdata.xts,"mean")
-      }else if(period=="yearly"){
-        analysismean.xts=xts::apply.yearly(analysisdata.xts,"mean")
+      analysisdata = datacombine[which(datacombine$Stratdata == i),]
+      analysisdata.xts = xts::xts(analysisdata$Contdata, order.by = analysisdata$Time)
+      if(period == "daily"){
+        analysismean.xts = xts::apply.daily(analysisdata.xts,"mean")
+        analysiscount.xts = xts::apply.daily(analysisdata.xts,"length")
+      }else if(period == "weekly"){
+        analysismean.xts = xts::apply.weekly(analysisdata.xts,"mean")
+        analysiscount.xts = xts::apply.weekly(analysisdata.xts,"length")
+      }else if(period == "monthly"){
+        analysismean.xts = xts::apply.monthly(analysisdata.xts,"mean")
+        analysiscount.xts = xts::apply.monthly(analysisdata.xts,"length")
+      }else if(period == "yearly"){
+        analysismean.xts = xts::apply.yearly(analysisdata.xts,"mean")
+        analysiscount.xts = xts::apply.yearly(analysisdata.xts,"length")
       }
 
-      analysisresultsrow=data.frame("Timespan"=period,"Time"=zoo::index(analysismean.xts),"Mean"=zoo::coredata(analysismean.xts),"Stratification_Level"=i)
-      analysisresults=rbind(analysisresults,analysisresultsrow)
+      analysisresultsrow=data.frame("Timespan" = period,"Time" = zoo::index(analysismean.xts),"Mean" = zoo::coredata(analysismean.xts),"Stratification_Level" = i,
+                                    "Count" = zoo::coredata(analysiscout.xts))
+      analysisresults = rbind(analysisresults,analysisresultsrow)
     }
 
-    analysisresults$Stratification_Level[analysisresults$Stratification_Level=="No Data"]=NA
-    analysisresults=analysisresults[order(analysisresults$Time),]
+    analysisresults$Stratification_Level[analysisresults$Stratification_Level == "No Data"] = NA
+    analysisresults = analysisresults[order(analysisresults$Time),]
   return(analysisresults)
 }
