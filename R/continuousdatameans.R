@@ -52,11 +52,8 @@ continuousdatameans = function(contdata, timedata, stratifieddata, period = c("d
       }
 
       analysisresultsrow=data.frame("Timespan" = period,"Time" = zoo::index(analysismean.xts),"Mean" = zoo::coredata(analysismean.xts),"Stratification_Level" = i,
-<<<<<<< HEAD
                                     "Count" = zoo::coredata(analysiscount.xts))
-=======
-                                    "Count" = zoo::coredata(analysiscout.xts))
->>>>>>> 4d99e970909ced29a170fa8af2274522bd7aca57
+
       analysisresults = rbind(analysisresults,analysisresultsrow)
     }
 
