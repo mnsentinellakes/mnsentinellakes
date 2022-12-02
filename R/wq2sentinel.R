@@ -21,7 +21,7 @@ wq2sentinel = function(wqdata){
     wqdataselect = wqdata[wqdata$stationName == i,]
     lakeid = mnsentinellakes::fixlakeid(unique(substr(wqdataselect$stationId,1,10)))
     lakename = mnsentinellakes::lakeid2name(lakeid)
-
+    #Build Data Frame
     wqoutputrow = data.frame("Lake" = lakename,"LakeId"=lakeid,"StationId" = wqdataselect$stationId,"Date" = as.Date(wqdataselect$sampleDate),
                            "Time" = wqdataselect$sampleTime,"Parameter" = as.character(wqdataselect$parameter),"GTLT" = wqdataselect$gtlt,
                            "Value" = wqdataselect$result,"Unit" = as.character(wqdataselect$resultUnit),
