@@ -28,6 +28,7 @@ wq2sentinel=function(wqdata){
                            "Type"=as.character(wqdataselect$sampleType),"Method"=as.character(wqdataselect$testMethodName),
                            "Upper_Depth"=suppressWarnings(as.numeric(as.character(wqdataselect$sampleUpperDepth))),
                            "Lower_Depth"=suppressWarnings(as.numeric(as.character(wqdataselect$sampleLowerDepth))),
+                           "Collecting_Organization" = wqdataselect$collectingOrg,
                            "Comments"=as.character(wqdataselect$comments),stringsAsFactors = FALSE)
     wqoutput=rbind(wqoutput,wqoutputrow)
   }
