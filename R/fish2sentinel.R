@@ -19,7 +19,7 @@
 
 fish2sentinel = function(fishsurvey){
 
-  lakename=mnsentinellakes::lakeid2name(unique(fishsurvey$LakeId))
+  lakename = mnsentinellakes::lakeid2name(unique(fishsurvey$LakeId))
 
   fishsurvey$quartileCount[fishsurvey$quartileCount=="N/A"]=NA
   fishsurvey$quartileWeight[fishsurvey$quartileWeight=="N/A"]=NA
