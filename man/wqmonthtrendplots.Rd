@@ -4,11 +4,22 @@
 \alias{wqmonthtrendplots}
 \title{WQ Trend Plots}
 \usage{
-wqmonthtrendplots(plotdata, logtransform = FALSE,
-  saveto = paste0(getwd()), includemonths = TRUE, ptcolor = "blue",
-  ptsize = 3, pttype = 20, addlm = TRUE, lmcolor = "black",
-  lmsize = 1, lmtype = 2, includestats = TRUE, statstable = TRUE,
-  maxpvalue = 0.1)
+wqmonthtrendplots(
+  plotdata,
+  logtransform = FALSE,
+  saveto = paste0(getwd()),
+  includemonths = TRUE,
+  ptcolor = "blue",
+  ptsize = 3,
+  pttype = 20,
+  addlm = TRUE,
+  lmcolor = "black",
+  lmsize = 1,
+  lmtype = 2,
+  includestats = TRUE,
+  statstable = TRUE,
+  maxpvalue = 0.1
+)
 }
 \arguments{
 \item{plotdata}{a water quality data.frame created with the wqmonthtable() function.}
@@ -66,10 +77,12 @@ wqmonthtrendplots(
 
 }
 \seealso{
-Other Water Quality: \code{\link{wqdatadownload}},
-  \code{\link{wqmonthtable}},
-  \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}, \code{\link{wqstations}}
+Other Water Quality: 
+\code{\link{wqdatadownload}()},
+\code{\link{wqmonthtable}()},
+\code{\link{wqmonthtrendstats}()},
+\code{\link{wqparameters}()},
+\code{\link{wqstations}()}
 }
 \concept{Water Quality}
 \keyword{quality}

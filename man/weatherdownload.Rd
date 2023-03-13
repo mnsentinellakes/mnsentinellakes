@@ -4,10 +4,13 @@
 \alias{weatherdownload}
 \title{Downloads Airport Weather Data}
 \usage{
-weatherdownload(lakeid, startdate, enddate,
-  parameters = c("Air Temperature", "Dew Point", "Relative Humidity",
-  "Wind Direction", "Wind Speed", "Altimeter", "Precipitation",
-  "Gust Speed", "Clouds"))
+weatherdownload(
+  lakeid,
+  startdate,
+  enddate,
+  parameters = c("Air Temperature", "Dew Point", "Relative Humidity", "Wind Direction",
+    "Wind Speed", "Altimeter", "Precipitation", "Gust Speed", "Clouds")
+)
 }
 \arguments{
 \item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}

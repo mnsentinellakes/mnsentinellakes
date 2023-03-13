@@ -4,8 +4,12 @@
 \alias{continuousdatameans}
 \title{Continous Lake Data Summary}
 \usage{
-continuousdatameans(contdata, timedata, stratifieddata,
-  period = c("daily" | "weekly" | "monthly" | "yearly"))
+continuousdatameans(
+  contdata,
+  timedata,
+  stratifieddata,
+  period = c("daily" | "weekly" | "monthly" | "yearly")
+)
 }
 \arguments{
 \item{contdata}{vector with continuous numeric data. Must have the same number of values as the timedata and stratifieddata parameters.}

@@ -21,8 +21,9 @@ x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 y <- wq2sentinel(x)
 }
 \seealso{
-Other Formatting: \code{\link{fish2sentinel}},
-  \code{\link{weather2sentinel}}
+Other Formatting: 
+\code{\link{fish2sentinel}()},
+\code{\link{weather2sentinel}()}
 }
 \concept{Formatting}
 \keyword{format}

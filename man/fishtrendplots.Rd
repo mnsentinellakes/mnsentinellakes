@@ -4,10 +4,21 @@
 \alias{fishtrendplots}
 \title{Fish Trend Plots}
 \usage{
-fishtrendplots(plotdata, logtransform = TRUE, saveto = paste0(getwd()),
-  ptcolor = "blue", ptsize = 3, pttype = 20, addlm = TRUE,
-  lmcolor = "black", lmsize = 1, lmtype = 2, includestats = TRUE,
-  statstable = TRUE, maxpvalue = 0.1)
+fishtrendplots(
+  plotdata,
+  logtransform = TRUE,
+  saveto = paste0(getwd()),
+  ptcolor = "blue",
+  ptsize = 3,
+  pttype = 20,
+  addlm = TRUE,
+  lmcolor = "black",
+  lmsize = 1,
+  lmtype = 2,
+  includestats = TRUE,
+  statstable = TRUE,
+  maxpvalue = 0.1
+)
 }
 \arguments{
 \item{plotdata}{a water quality data.frame created with the fishtable() function.}
@@ -63,16 +74,18 @@ fishtrendplots(plotdata = z)
 }
 }
 \seealso{
-Other Fish: \code{\link{fishabbrev2common}},
-  \code{\link{fishabbrev2scientific}},
-  \code{\link{fishcommon2abbrev}},
-  \code{\link{fishcommon2scientific}},
-  \code{\link{fishscientific2abbrev}},
-  \code{\link{fishscientific2common}},
-  \code{\link{fishspeciesmetadata}},
-  \code{\link{fishsurveydata}}, \code{\link{fishtable}},
-  \code{\link{fishtrendstats}},
-  \code{\link{lakefinderdownload}}
+Other Fish: 
+\code{\link{fishabbrev2common}()},
+\code{\link{fishabbrev2scientific}()},
+\code{\link{fishcommon2abbrev}()},
+\code{\link{fishcommon2scientific}()},
+\code{\link{fishscientific2abbrev}()},
+\code{\link{fishscientific2common}()},
+\code{\link{fishspeciesmetadata}},
+\code{\link{fishsurveydata}()},
+\code{\link{fishtable}()},
+\code{\link{fishtrendstats}()},
+\code{\link{lakefinderdownload}()}
 }
 \concept{Fish}
 \keyword{fish}

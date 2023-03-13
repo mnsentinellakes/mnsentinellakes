@@ -4,7 +4,9 @@
 \name{fishabbreviations}
 \alias{fishabbreviations}
 \title{Fish Species Abbreviations}
-\format{a data frame.}
+\format{
+a data frame.
+}
 \usage{
 data(fishabbreviations)
 }

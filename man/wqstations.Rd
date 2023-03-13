@@ -16,11 +16,12 @@ a list of water quality station ids
 This function returns a list of station ids located on the lake with the supplied LakeId.
 }
 \seealso{
-Other Water Quality: \code{\link{wqdatadownload}},
-  \code{\link{wqmonthtable}},
-  \code{\link{wqmonthtrendplots}},
-  \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}
+Other Water Quality: 
+\code{\link{wqdatadownload}()},
+\code{\link{wqmonthtable}()},
+\code{\link{wqmonthtrendplots}()},
+\code{\link{wqmonthtrendstats}()},
+\code{\link{wqparameters}()}
 }
 \concept{Water Quality}
 \keyword{control}

@@ -34,10 +34,12 @@ wqmonthtrendstats(statdata = y)
 
 }
 \seealso{
-Other Water Quality: \code{\link{wqdatadownload}},
-  \code{\link{wqmonthtable}},
-  \code{\link{wqmonthtrendplots}},
-  \code{\link{wqparameters}}, \code{\link{wqstations}}
+Other Water Quality: 
+\code{\link{wqdatadownload}()},
+\code{\link{wqmonthtable}()},
+\code{\link{wqmonthtrendplots}()},
+\code{\link{wqparameters}()},
+\code{\link{wqstations}()}
 }
 \concept{Water Quality}
 \keyword{analysis}

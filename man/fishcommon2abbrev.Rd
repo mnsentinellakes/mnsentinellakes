@@ -20,15 +20,17 @@ fishcommon2abbrev("Bluegill")
 
 }
 \seealso{
-Other Fish: \code{\link{fishabbrev2common}},
-  \code{\link{fishabbrev2scientific}},
-  \code{\link{fishcommon2scientific}},
-  \code{\link{fishscientific2abbrev}},
-  \code{\link{fishscientific2common}},
-  \code{\link{fishspeciesmetadata}},
-  \code{\link{fishsurveydata}}, \code{\link{fishtable}},
-  \code{\link{fishtrendplots}},
-  \code{\link{fishtrendstats}},
-  \code{\link{lakefinderdownload}}
+Other Fish: 
+\code{\link{fishabbrev2common}()},
+\code{\link{fishabbrev2scientific}()},
+\code{\link{fishcommon2scientific}()},
+\code{\link{fishscientific2abbrev}()},
+\code{\link{fishscientific2common}()},
+\code{\link{fishspeciesmetadata}},
+\code{\link{fishsurveydata}()},
+\code{\link{fishtable}()},
+\code{\link{fishtrendplots}()},
+\code{\link{fishtrendstats}()},
+\code{\link{lakefinderdownload}()}
 }
 \concept{Fish}

@@ -4,23 +4,38 @@
 \alias{stratificationperiod}
 \title{Lake Stratification Periods}
 \usage{
-stratificationperiod(tempdata, consecutivedays = 10)
+stratificationperiod(
+  tempdata,
+  datedata,
+  depthdata,
+  tablestructure = "tall",
+  consecutivedays = 10
+)
 }
 \arguments{
-\item{tempdata}{a table with "Date","Depth", and "Temperature" fields.}
+\item{tempdata}{a vector of temperature values}
 
-\item{consecutivedays}{the number of consecutive days of uninterrupted stratification required to consider the lake stratified for the season. Default is 10 days.}
+\item{datedata}{a vector of dates associated with the temperature values}
+
+\item{depthdata}{a vector of depths associated with the temperature values}
+
+\item{tablestructure}{determines if the output table should be in a "tall" or "wide" format. If "tall" the table will include "year", "date", "event", and "cons_days" (consecutive days) fields. If "wide" the table will include "year", "start_date", "end_date", and "cons_days" fields.}
+
+\item{consecutivedays}{the number of consecutive days of uninterrupted stratification required to consider the lake stratified for the season. A value of 0 will give all days the lake is stratified. Default is 10 days.}
 }
 \value{
-a data.frame indicating the start (S) and end (E) stratification dates.
+a data.frame indicating the start and end dates of thermal lake stratification. If table structure is tall, stratification "events" include "S" - start, "E" - end, and "SE" - stratification started and ended on the same day.
 }
 \description{
-This function calculates the start and end of lake thermal stratification using daily lake temperature profile data. In this calculation, a lake is considered stratified when there is a difference of one degree C between one meter depth intervals anywhere within the water column.
+This function calculates the start and end of lake thermal stratification using daily lake temperature profile data (This will only work on data collected at or summarized to a daily scale). In this calculation, a lake is considered stratified when there is a difference of one degree C between one meter depth intervals anywhere within the water column.
 }
 \examples{
 \dontrun{
 x <-stratificationperiod(
-      tempdata = temperaturedata,
+      tempdata = temperaturedata$mean_temp,
+      datedata = temperaturedata$date,
+      depthdata = temperaturedata$depth,
+      tablestructure = "wide",
       consecutivedays = 15
       )
 }

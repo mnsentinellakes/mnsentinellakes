@@ -23,9 +23,10 @@ lakename2id("Echo")
 
 }
 \seealso{
-Other Sentinel Lakes Tools: \code{\link{addunderscore}},
-  \code{\link{fixlakeid}}, \code{\link{gpx2shp}},
-  \code{\link{lakeid2name}}
+Other Sentinel Lakes Tools: 
+\code{\link{addunderscore}()},
+\code{\link{fixlakeid}()},
+\code{\link{lakeid2name}()}
 }
 \concept{Sentinel Lakes Tools}
 \keyword{dowlknum}

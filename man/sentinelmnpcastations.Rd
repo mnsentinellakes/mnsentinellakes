@@ -4,7 +4,9 @@
 \name{sentinelmnpcastations}
 \alias{sentinelmnpcastations}
 \title{Sentinel MNPCA Stations}
-\format{a data frame.}
+\format{
+a data frame.
+}
 \usage{
 data(sentinelmnpcastations)
 }

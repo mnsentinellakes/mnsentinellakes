@@ -4,8 +4,7 @@
 \alias{wqmonthtable}
 \title{Process Downloaded Water Quality Data}
 \usage{
-wqmonthtable(wqdata, parameters, months, startyear = NULL,
-  endyear = NULL)
+wqmonthtable(wqdata, parameters, months, startyear = NULL, endyear = NULL)
 }
 \arguments{
 \item{wqdata}{a water quality data.frame downloaded using the wqdatadownload() function.}
@@ -53,10 +52,12 @@ y <- wqmonthtable(
      )
 }
 \seealso{
-Other Water Quality: \code{\link{wqdatadownload}},
-  \code{\link{wqmonthtrendplots}},
-  \code{\link{wqmonthtrendstats}},
-  \code{\link{wqparameters}}, \code{\link{wqstations}}
+Other Water Quality: 
+\code{\link{wqdatadownload}()},
+\code{\link{wqmonthtrendplots}()},
+\code{\link{wqmonthtrendstats}()},
+\code{\link{wqparameters}()},
+\code{\link{wqstations}()}
 }
 \concept{Water Quality}
 \keyword{minnesota}

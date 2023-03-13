@@ -23,8 +23,9 @@ x <- weatherdownload(
 y <- weather2sentinel(x)
 }
 \seealso{
-Other Formatting: \code{\link{fish2sentinel}},
-  \code{\link{wq2sentinel}}
+Other Formatting: 
+\code{\link{fish2sentinel}()},
+\code{\link{wq2sentinel}()}
 }
 \concept{Formatting}
 \keyword{weather}

@@ -4,7 +4,9 @@
 \name{sentinellakesmetadata}
 \alias{sentinellakesmetadata}
 \title{Sentinel Lakes Metadata}
-\format{a data frame.}
+\format{
+a data frame.
+}
 \usage{
 data(sentinellakesmetadata)
 }
