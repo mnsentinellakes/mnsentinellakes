@@ -19,7 +19,7 @@ fishsurveydata = function(lakefinderdata){
     for (j in 1:as.numeric(length(lakefinderdata$result$surveys$surveyDate))){
 
       LOISurveyDatarow = as.data.frame(lakefinderdata$result$surveys$fishCatchSummaries[j])
-      if (nrow(LOISurveyDatarow)>0){
+      if (nrow(LOISurveyDatarow) > 0){
         LOISurveyDatarow["Date"] = as.Date(lakefinderdata$result$surveys$surveyDate[j])
         LOISurveyDatarow["LakeId"] = as.character(lakefinderdata$LakeId)
         LOISurveyDatarow["Ecoregion"] = as.character(mnsentinellakes::mnlakesmetadata$Ecoregion[
