@@ -10,9 +10,9 @@
 wqstations = function(lakeid){
 
   if (lakeid %in% mnsentinellakes::fixlakeid(unique(mnsentinellakes::sentinelmnpcastations$LakeId))){
-    stations=mnsentinellakes::sentinelmnpcastations$ID_CODE[mnsentinellakes::fixlakeid(mnsentinellakes::sentinelmnpcastations$LakeId)==lakeid]
+    stations = mnsentinellakes::sentinelmnpcastations$ID_CODE[mnsentinellakes::fixlakeid(mnsentinellakes::sentinelmnpcastations$LakeId) == lakeid]
   }else if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId)){
-    stations=mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId==lakeid & mnsentinellakes::mnpcastations$Status=="Active"]
+    stations = mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId == lakeid]
   }else{
     stations=NULL
 
@@ -20,3 +20,5 @@ wqstations = function(lakeid){
   }
   return(stations)
 }
+
+View(mnpcastations)
