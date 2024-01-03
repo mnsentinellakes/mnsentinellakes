@@ -20,5 +20,3 @@ wqstations = function(lakeid){
   }
   return(stations)
 }
-
-View(mnpcastations)
