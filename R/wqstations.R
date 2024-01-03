@@ -9,8 +9,6 @@
 
 wqstations = function(lakeid){
 
-  lakeid = "47004901"
-
   if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId) | lakeid %in% unique(mnsentinellakes::mnpcastations$BasinId)){
     stations = mnsentinellakes::mnpcastations$StationId[which(mnsentinellakes::mnpcastations$LakeId == lakeid)]
     if (length(stations) == 0){
