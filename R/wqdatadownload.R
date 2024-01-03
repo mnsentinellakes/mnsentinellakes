@@ -12,7 +12,7 @@
 #' @export
 
 wqdatadownload = function(stationids){
-  wqdata=NULL
+  wqdata = NULL
   for (i in stationids) {
     wqdatadown = as.data.frame(
       data.table::fread(
@@ -23,8 +23,8 @@ wqdatadownload = function(stationids){
 
 
 
-    if (nrow(wqdatadown)>0){
-      wqdata=rbind(wqdata,wqdatadown)
+    if (nrow(wqdatadown) > 0){
+      wqdata = rbind(wqdata,wqdatadown)
     }
   }
 
