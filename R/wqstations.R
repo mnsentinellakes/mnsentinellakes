@@ -9,13 +9,14 @@
 
 wqstations = function(lakeid){
 
-  if (lakeid %in% mnsentinellakes::fixlakeid(unique(mnsentinellakes::sentinelmnpcastations$LakeId))){
-    stations = mnsentinellakes::sentinelmnpcastations$ID_CODE[mnsentinellakes::fixlakeid(mnsentinellakes::sentinelmnpcastations$LakeId) == lakeid]
-  }else if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId)){
-    stations = mnsentinellakes::mnpcastations$ID_CODE[mnsentinellakes::mnpcastations$LakeId == lakeid]
-  }else{
-    stations=NULL
+  if (lakeid %in% unique(mnsentinellakes::mnpcastations$LakeId | lakeid %in% unique(mnsentinellakes::mnpcastations$BasinId))){
+    stations = mnsentinellakes::mnpcastations$StationId[which(mnsentinellakes::mnpcastations$LakeId == lakeid)]
+    if (is.null(stations)){
+      stations = mnsentinellakes::mnpcastations$StationId[which(mnsentinellakes::mnpcastations$BasinId == lakeid)]
+    }
 
+  }else{
+    stations = NULL
     warning("There are no stations on this lake.")
   }
   return(stations)
