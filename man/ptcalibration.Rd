@@ -4,17 +4,15 @@
 \alias{ptcalibration}
 \title{Pressure Transducer Calibration}
 \usage{
-ptcalibration(ptdata, lakeid, staffgauge, notes = NA)
+ptcalibration(ptdata, lakeid, staffgaugereadings)
 }
 \arguments{
 \item{ptdata}{a data frame of pressure transducer data with "Date", "Time", and "Value" fields.}
 
 \item{lakeid}{the lakeid for the lake where the pressure transducer is located.}
 
-\item{staffgauge}{a data frame staff gauge or other lake level measurement data that the pressure transducer data are calibrated to. Includes "Lake",
+\item{staffgaugereadings}{a data frame staff gauge or other lake level measurement data that the pressure transducer data are calibrated to. Includes "Lake",
 "Gauge_Reading", "Date", "Time", and "Notes" fields.}
-
-\item{notes}{any additional notes for this transducer and time period. If NA, the function will look for notes in the staffgauge data.}
 }
 \value{
 a list of two data frames, one with the calibrated data and the other with metadata.
@@ -27,7 +25,7 @@ This function calibrates pressure transducer data to known staff gauge or other 
 x <- ptcalibration(
        ptdata = data,
        lakeid = "15001000",
-       staffgauge = staffgauge
+       staffgaugereadings = staffgauge
      )
 }
 
