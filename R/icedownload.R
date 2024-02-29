@@ -45,7 +45,7 @@ icedownload = function(lakeid){
     }
 
     #Arrange data
-    if (nrow(iceoutput) > 0){
+    if (!is.null(iceoutput)){
       iceoutput = dplyr::arrange(iceoutput,Date)
     }else{
       warning("No ice data for this lake.")
