@@ -13,48 +13,46 @@
 #' @export
 
 
-icedownload=function(lakeid){
+icedownload = function(lakeid){
 
-  lakeid = "01000200"
-
+  #Get lake name
   lakename = mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==mnsentinellakes::fixlakeid(lakeid)]
+  #Ensure lakeid is legit
   if (length(lakename) > 0){
-  iceoutput = NULL
-  for (i in c("in","out")){
-    if (i == "in"){
-      icestatus = "In"
-    }else if (i == "out"){
-      icestatus = "Out"
-    }
+    iceoutput = NULL
+    #Loop through in and out
+    for (i in c("in","out")){
+      if (i == "in"){
+        icestatus = "In"
+      }else if (i == "out"){
+        icestatus = "Out"
+      }
 
-    inputurl = paste0("https://maps.dnr.state.mn.us/cgi-bin/climatology/ice_",i,"_by_lake_as_csv.cgi?id=",lakeid)
-    icedata = readr::read_csv(inputurl,skip = 2,show_col_types = FALSE)
+      #Build URL
+      inputurl = paste0("https://maps.dnr.state.mn.us/cgi-bin/climatology/ice_",i,"_by_lake_as_csv.cgi?id=",lakeid)
+      #Download data
+      icedata = readr::read_csv(inputurl,skip = 2,show_col_types = FALSE)
 
-    if(nrow(icedata) > 0){
-      colnames(icedata)[1] = "Date"
+      #Build data frame
+      if(nrow(icedata) > 0){
+        colnames(icedata)[1] = "Date"
 
-      icedata = data.frame("Lake" = lakename,"LakeId" = lakeid,"Date" = icedata$Date,"Ice_Status" = icestatus,
+        icedata = data.frame("Lake" = lakename,"LakeId" = lakeid,"Date" = icedata$Date,"Ice_Status" = icestatus,
                              "Source" = icedata$Source,"Comments" = NA)
 
-      iceoutput = rbind(iceoutput,icedata)
-    }else{
-      iceoutput = "No Data"
+        iceoutput = rbind(iceoutput,icedata)
+      }
     }
-  }
 
-  if (iceoutput != "No Data"){
-    iceoutput = iceoutput[order(iceoutput$Date),]
-  }else{
-    warning("No ice data for this lake.")
-  }
+    #Arrange data
+    if (nrow(iceoutput) > 0){
+      iceoutput = dplyr::arrange(iceoutput,Date)
+    }else{
+      warning("No ice data for this lake.")
+    }
   }else{
     iceoutput = print("No ice data for this lake")
   }
-
-  # if (is.null(iceoutput)){
-  #   warning("No ice data for this lake.")
-  # }
-
 
   return(iceoutput)
 }
