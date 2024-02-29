@@ -26,7 +26,7 @@ icedownload=function(lakeid){
     }
 
     inputurl = paste0("https://maps.dnr.state.mn.us/cgi-bin/climatology/ice_",i,"_by_lake_as_csv.cgi?id=",lakeid)
-    icedata = readr::read_csv(inputurl,skip = 2)
+    icedata = readr::read_csv(inputurl,skip = 2,show_col_types = FALSE)
 
     if(nrow(icedata) > 0){
       colnames(icedata)[1] = "Date"
