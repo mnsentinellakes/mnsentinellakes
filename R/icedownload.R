@@ -15,6 +15,8 @@
 
 icedownload=function(lakeid){
 
+  lakeid = "01000200"
+
   lakename = mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==mnsentinellakes::fixlakeid(lakeid)]
   if (length(lakename) > 0){
   iceoutput = NULL
@@ -34,11 +36,13 @@ icedownload=function(lakeid){
       icedata = data.frame("Lake" = lakename,"LakeId" = lakeid,"Date" = icedata$Date,"Ice_Status" = icestatus,
                              "Source" = icedata$Source,"Comments" = NA)
 
-    iceoutput = rbind(iceoutput,icedata)
+      iceoutput = rbind(iceoutput,icedata)
+    }else{
+      iceoutput = "No Data"
     }
   }
 
-  if (nrow(iceoutput) > 0){
+  if (iceoutput != "No Data"){
     iceoutput = iceoutput[order(iceoutput$Date),]
   }else{
     warning("No ice data for this lake.")
