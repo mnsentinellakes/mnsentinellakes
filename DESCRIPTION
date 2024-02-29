@@ -10,6 +10,6 @@ LazyData: true
 RoxygenNote: 7.2.3
 Imports:
     data.table, dplyr, ggplot2, ggpubr, Hmisc, httr, jsonlite, lubridate,  rlang, rvest, 
-    stats, tools, tidyr, utils, xml2, xts, zoo
+    stats, tools, tidyr, utils, xml2, xts, zoo, readr
 Suggests: 
     testthat
