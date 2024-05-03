@@ -40,8 +40,8 @@ compile_do_folder=function(folderpath,savetofolder){
 
 
 
-    doreformat=data.frame("Unix.Timestamp"=as.character(datetime),"UTC_Date_._Time"=as.character(datetimeutc),
-                          "Central.Standard.Time"=as.character(lubridate::with_tz(datetimeutc,'US/Central')),"Battery"=as.character(batteryformat),
+    doreformat=data.frame("Unix.Timestamp"=as.character(datetime),"UTC_Date_._Time"=as.character(format(datetimeutc)),
+                          "Central.Standard.Time"=as.character(format(lubridate::with_tz(datetimeutc,'US/Central'))),"Battery"=as.character(batteryformat),
                           "Temperature"=as.character(tempformat),"Dissolved.Oxygen"=as.character(doformat),"Dissolved.Oxygen.Saturation"=NA,
                           "Q"=as.character(qformat),stringsAsFactors = FALSE)
 
