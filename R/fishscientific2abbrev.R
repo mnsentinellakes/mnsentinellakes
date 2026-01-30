@@ -9,10 +9,10 @@
 #'
 #' @export
 
-fishscientific2abbrev=function(scientificname){
-  getabbrev=mnsentinellakes::fishabbreviations$Code[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
-  names(getabbrev)=mnsentinellakes::fishabbreviations$Scientific_Name[which(mnsentinellakes::fishabbreviations$Prime==TRUE)]
-  fishabbrev=unname(getabbrev[scientificname])
+fishscientific2abbrev = function(scientificname){
+  getabbrev = mnsentinellakes::fishabbreviations$Code[which(mnsentinellakes::fishabbreviations$Prime == TRUE)]
+  names(getabbrev) = mnsentinellakes::fishabbreviations$Scientific_Name[which(mnsentinellakes::fishabbreviations$Prime == TRUE)]
+  fishabbrev = unname(getabbrev[scientificname])
 
   return(fishabbrev)
 }
