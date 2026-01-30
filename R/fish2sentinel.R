@@ -19,20 +19,33 @@
 
 fish2sentinel = function(fishsurvey){
 
-  lakename = mnsentinellakes::lakeid2name(unique(fishsurvey$LakeId))
+  basin_name = mnsentinellakes::basinid2name(unique(fishsurvey$basin_id))
 
-  fishsurvey$quartileCount[fishsurvey$quartileCount=="N/A"]=NA
-  fishsurvey$quartileWeight[fishsurvey$quartileWeight=="N/A"]=NA
+  fishsurvey$quartilecount[fishsurvey$quartilecount == "N/A"] = NA
+  fishsurvey$quartileweight[fishsurvey$quartileweight == "N/A"] = NA
 
-  fishoutput=data.frame("Lake"=lakename,"LakeId"=unique(fishsurvey$LakeId),"Date"=fishsurvey$Date,"Species"=fishsurvey$species,
-                        "Quartile_Count"=fishsurvey$quartileCount,"CPUE"=fishsurvey$CPUE,"Total_Catch"=fishsurvey$totalCatch,
-                        "Total_Weight"=fishsurvey$totalWeight,"Quartile_Weight"=fishsurvey$quartileWeight,"Average_Weight"=fishsurvey$averageWeight,
-                        "Gear"=fishsurvey$gear, "Gear_Count"=fishsurvey$gearCount)
-  fishoutput=suppressWarnings(dplyr::left_join(fishoutput,mnsentinellakes::fishabbreviations,by=c("Species"="Code")))
-  colnames(fishoutput)[names(fishoutput)=="Name"]="Species_Name"
-  fishoutput=fishoutput[,c(1,2,3,4,13,5,6,7,8,9,10,11,12)]
+  fishoutput=data.frame(
+    "basin_name" = basin_name,
+    "basin_id" = unique(fishsurvey$basin_id),
+    "date" = fishsurvey$date,
+    "species" = fishsurvey$species,
+    "quartile_count" = fishsurvey$quartilecount,
+    "cpue" = fishsurvey$cpue,
+    "total_catch" = fishsurvey$totalcatch,
+    "total_weight" = fishsurvey$totalweight,
+    "quartile_weight" = fishsurvey$quartileweight,
+    "average_weight" = fishsurvey$averageweight,
+    "gear" = fishsurvey$gear,
+    "gear_count" = fishsurvey$gearcount
+    )
+  fishoutput = suppressWarnings(dplyr::left_join(fishoutput,mnsentinellakes::fishabbreviations,by = c("species"="Code")))
+  colnames(fishoutput)[names(fishoutput) == "name"] = "species_name"
+  names(fishoutput) = tolower(names(fishoutput))
 
-  fishoutput=fishoutput[order(fishoutput$Date),]
-  row.names(fishoutput)=NULL
+
+  fishoutput = fishoutput[,c(1,2,3,4,13,5,6,7,8,9,10,11,12)]
+
+  fishoutput = fishoutput[order(fishoutput$date),]
+  row.names(fishoutput) = NULL
   return(fishoutput)
 }
