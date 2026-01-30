@@ -21,6 +21,9 @@ addunderscore("St. James")
 }
 \seealso{
 Other Sentinel Lakes Tools: 
+\code{\link{basinid2name}()},
+\code{\link{basinname2id}()},
+\code{\link{fixbasinid}()},
 \code{\link{fixlakeid}()},
 \code{\link{lakeid2name}()},
 \code{\link{lakename2id}()}
