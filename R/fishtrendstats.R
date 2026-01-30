@@ -24,41 +24,61 @@
 #' fishtrendstats(statdata = z)
 #' }
 #' @export
-fishtrendstats=function(statdata,logtransform=TRUE){
-  Lakename=mnsentinellakes::mnlakesmetadata$Lake[mnsentinellakes::mnlakesmetadata$LakeId==unique(statdata$LakeId)]
-  statdata$CPUE=as.numeric(as.character(statdata$CPUE))
+fishtrendstats = function(statdata,logtransform = TRUE){
+
+  basinname = mnsentinellakes::basinid2name(unique(statdata$basin_id))
+
+  statdata$cpue = as.numeric(as.character(statdata$cpue))
   statcompile=NULL
   for (i in unique(statdata$species)){
-    statdataselect=statdata[statdata$species==i,]
+    statdataselect = statdata[statdata$species == i,]
 
-    if (nrow(statdataselect)>3){
-      if (logtransform==TRUE){
+    if (nrow(statdataselect) > 3){
+      if (logtransform == TRUE){
 
-        xvalue=log(statdataselect$CPUE+1)
+        xvalue = log(statdataselect$cpue + 1)
       }else{
-        xvalue=statdataselect$CPUE
+        xvalue = statdataselect$cpue
       }
-      statlm=suppressWarnings(stats::lm(xvalue~statdataselect$Year))
+      statlm = suppressWarnings(stats::lm(xvalue ~ statdataselect$year))
 
-      if (nrow(statdataselect)>4){
-        pearson=Hmisc::rcorr(x=statdataselect$Year,y=xvalue,type = "pearson")$r[1,2]
-        spearman=Hmisc::rcorr(x=statdataselect$Year,y=xvalue,type = "spearman")$r[1,2]
+      if (nrow(statdataselect) > 4){
+        pearson = Hmisc::rcorr(x = statdataselect$year,y = xvalue,type = "pearson")$r[1,2]
+        spearman = Hmisc::rcorr(x=statdataselect$year,y = xvalue,type = "spearman")$r[1,2]
       }else{
-        pearson=NA
-        spearman=NA
+        pearson = NA
+        spearman = NA
       }
 
-      statdataframe=data.frame("Lake"=Lakename,"LakeId"=unique(statdata$LakeId),"Species"=i,
-                               "n_samples"=sum(statdataselect$totalCatch),"n_years"=nrow(statdataselect),
-                               "R-squared"=suppressWarnings(round(as.numeric(summary(statlm)$r.squared),digits = 5)),
-                               "P-value"=suppressWarnings(round(as.numeric(summary(statlm)$coefficients[2,4]),digits = 5)),
-                               "Slope"=round(as.numeric(statlm$coefficients[2]),digits = 5),"Pearson"=round(as.numeric(pearson),digits = 5),
-                               "Spearman"=round(as.numeric(spearman),digits = 5),stringsAsFactors = FALSE)
+      statdataframe = data.frame(
+        "basin_name" = basinname,
+        "basin_id" = unique(statdata$basin_id),
+        "species" = i,
+        "n_samples"= sum(statdataselect$totalcatch),
+        "n_years" = nrow(statdataselect),
+        "r-squared" = suppressWarnings(round(as.numeric(summary(statlm)$r.squared),digits = 5)),
+        "p-value" = suppressWarnings(round(as.numeric(summary(statlm)$coefficients[2,4]),digits = 5)),
+        "slope" = round(as.numeric(statlm$coefficients[2]),digits = 5),
+        "pearson" = round(as.numeric(pearson),digits = 5),
+        "spearman" = round(as.numeric(spearman),digits = 5),
+        stringsAsFactors = FALSE
+      )
     }else{
-      statdataframe=data.frame("Lake"=Lakename,"LakeId"=unique(statdata$LakeId),"Species"=i,"n_samples"=NA,
-                               "n_years"=NA,"R-squared"=NA,"P-value"=NA,"Slope"=NA,"Pearson"=NA,"Spearman"=NA,stringsAsFactors = FALSE)
+      statdataframe =data.frame(
+        "basin_name" = basinname,
+        "basin_id" = unique(statdata$basin_id),
+        "species" = i,
+        "n_samples" = NA,
+        "n_years" = NA,
+        "r-squared" = NA,
+        "p-value" = NA,
+        "slope" = NA,
+        "pearson" = NA,
+        "spearman" = NA,
+        stringsAsFactors = FALSE
+      )
     }
-    statcompile=rbind(statcompile,statdataframe)
+    statcompile = rbind(statcompile,statdataframe)
   }
   return(statcompile)
 }
