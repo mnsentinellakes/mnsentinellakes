@@ -4,10 +4,10 @@
 \alias{icedownload}
 \title{Download Minnesota Climatology Lake Ice Data}
 \usage{
-icedownload(lakeid)
+icedownload(basinid)
 }
 \arguments{
-\item{lakeid}{a character indicating the LakeId (DOWLKNUM) for the lake to be downloaded.}
+\item{basinid}{a character indicating the Basin Id (DOWLKNUM) for the lake to be downloaded.}
 }
 \value{
 a data.frame with lake ice data.
