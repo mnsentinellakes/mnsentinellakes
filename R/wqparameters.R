@@ -8,9 +8,10 @@
 #' @family Water Quality
 #' @importFrom rlang .data
 #' @examples
+#' \dontrun{
 #' x <- wqdatadownload("15-0010-00-100")
 #' wqparameters(x)
-#'
+#' }
 #' @export
 
 wqparameters=function(wqdata,minsample=0){

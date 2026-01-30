@@ -10,6 +10,7 @@
 #' @return A data.frame
 #' @family Water Quality
 #' @examples
+#' \dontrun{
 #' #Download the data
 #' x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 #'
@@ -36,6 +37,7 @@
 #'         months = c(6,7,8,9),
 #'         startyear = 2008
 #'      )
+#'  }
 #' @export
 
 wqmonthtable=function(wqdata,parameters,months,startyear=NULL,endyear=NULL){

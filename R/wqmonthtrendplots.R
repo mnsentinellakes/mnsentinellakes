@@ -21,6 +21,7 @@
 #' @family Water Quality
 #' @importFrom rlang .data
 #' @examples
+#' \dontrun{
 #' #Download the data
 #' x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 #'
@@ -37,7 +38,7 @@
 #' wqmonthtrendplots(
 #'   plotdata = y
 #'   )
-#'
+#' }
 #' @export
 
 wqmonthtrendplots=function(plotdata,logtransform=FALSE,saveto=paste0(getwd()),includemonths=TRUE,ptcolor="blue",ptsize=3,pttype=20,addlm=TRUE,lmcolor="black",

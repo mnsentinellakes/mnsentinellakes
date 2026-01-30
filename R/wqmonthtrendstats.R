@@ -7,6 +7,7 @@
 #' @return a data.frame with statistics for each parameter in the water quality data.frame input.
 #' @family Water Quality
 #' @examples
+#' \dontrun{
 #' #Download the data
 #' x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 #'
@@ -20,7 +21,7 @@
 #'      )
 #'
 #' wqmonthtrendstats(statdata = y)
-#'
+#' }
 #' @export
 
 wqmonthtrendstats=function(statdata,logtransform=FALSE){
