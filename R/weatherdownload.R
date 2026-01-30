@@ -1,7 +1,7 @@
 #' Downloads Airport Weather Data
 #'
 #' This function downloads airport weather station data from the Iowa State Mesonet from the station nearest to chosen lake.
-#' @param lakeid Minnesota lake identifier (DOWLKNUM) for the lake of interest.
+#' @param basinid Minnesota lake identifier (DOWLKNUM) for the lake of interest.
 #' @param startdate a date indicating the beginning of the date range to be downloaded. Format: "yyyy-mm-dd".
 #' @param enddate a date indicating the end of the date range to be downloaded. Format: "yyyy-mm-dd".
 #' @param parameters a list of parameters to download. Valid parameters include "Air Temperature", "Dew Point", "Relative Humidity", "Wind Direction",
@@ -10,25 +10,26 @@
 #' @family Weather
 #' @examples
 #' x <- weatherdownload(
-#'        lakeid = 21005700,
+#'        basinid = 21005700,
 #'        startdate = "2019-03-20",
 #'        enddate = "2019-04-01")
 #' @export
 
-weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperature","Dew Point","Relative Humidity","Wind Direction","Wind Speed",
-                                                                                 "Altimeter","Precipitation","Gust Speed","Clouds")){
+weatherdownload = function(basinid,startdate,enddate,parameters = c(
+  "Air Temperature","Dew Point","Relative Humidity","Wind Direction","Wind Speed",
+  "Altimeter","Precipitation","Gust Speed","Clouds")){
 
   #Standardize lake name for lookup
 
-  if (lakeid %in% mnsentinellakes::sentinellakesmetadata$LakeId){
-    IATA=mnsentinellakes::sentinellakesmetadata$IATA[mnsentinellakes::sentinellakesmetadata$LakeId==lakeid]
+  if (basinid %in% mnsentinellakes::sentinellakesmetadata$LakeId){
+    IATA = mnsentinellakes::sentinellakesmetadata$IATA[mnsentinellakes::sentinellakesmetadata$LakeId == basinid]
   }else{
-    IATA=mnsentinellakes::mnlakesmetadata$IATA[mnsentinellakes::mnlakesmetadata$LakeId==lakeid]
+    IATA = mnsentinellakes::mnlakesmetadata$IATA[mnsentinellakes::mnlakesmetadata$LakeId == basinid]
   }
 
-  if (length(IATA)==1){
+  if (length(IATA) == 1){
     #Setup first portion of URL
-    wthrdata=paste0("https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=",IATA)
+    wthrdata = paste0("https://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=",IATA)
 
     #Parameters
     #Air temperature
@@ -122,17 +123,17 @@ weatherdownload = function(lakeid,startdate,enddate,parameters=c("Air Temperatur
                     "&tz=Etc%2FUTC&format=onlycomma&latlon=no&direct=no&report_type=1&report_type=2")
 
     #Download data
-    wthrdld=data.table::fread(wthrdata)
-    wthrdld=as.data.frame(wthrdld)
+    wthrdld = data.table::fread(wthrdata)
+    wthrdld = as.data.frame(wthrdld)
 
-    if (nrow(wthrdld)>0){
-      wthrdld["LakeId"]=lakeid
+    if (nrow(wthrdld) > 0){
+      wthrdld["basin_id"] = basinid
     }else{
-      wthrdld=NULL
+      wthrdld = NULL
       warning("No weather data for these parameters.")
     }
   }else{
-    wthrdld=NULL
+    wthrdld = NULL
     warning("No weather data for this lake.")
   }
   return(wthrdld)
