@@ -4,7 +4,7 @@
 #' same name, this will return a list of LakeIds.
 #' @param lakename name of the lake.
 #' @param county county where the lake is located. Default is NULL.
-#' @keywords lakeid dowlknum
+#' @keywords lakeid dowlknum deprecated
 #' @return a data.frame
 #' @family Sentinel Lakes Tools
 #' @examples
@@ -13,7 +13,10 @@
 #' @export
 
 lakename2id=function(lakename,county=NULL){
-
+  .Deprecated(
+    new = "basinname2id",
+    msg = "Change reflects updated terminology. basinname2id also references a larger lake dataset"
+  )
   getids=lapply(
     lakename, function(x){
       ids=mnsentinellakes::mnlakesmetadata$LakeId
