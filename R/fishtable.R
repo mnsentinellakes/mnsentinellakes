@@ -31,79 +31,87 @@
 #' }
 #' @export
 
-fishtable=function(fishsurvey,fishspecies,startyear=NULL,endyear=NULL){
-
+fishtable = function(fishsurvey,fishspecies,startyear = NULL,endyear = NULL){
 
   if(!is.null(fishsurvey)){
     if (!is.null(startyear)){
-      fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date)>=startyear,]
+      fishsurvey = fishsurvey[lubridate::year(fishsurvey$date) >= startyear,]
     }
 
     if (!is.null(endyear)){
-      fishsurvey=fishsurvey[lubridate::year(fishsurvey$Date<=endyear),]
+      fishsurvey = fishsurvey[lubridate::year(fishsurvey$date <= endyear),]
     }
 
-    LOIData=NULL
+    LOIData = NULL
     for (i in 1:length(fishspecies)){
 
-      speciescode=mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]]
-      speciesgear=unique(mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]])
+      speciescode = mnsentinellakes::fishspeciesmetadata$Code[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]]
+      speciesgear = unique(mnsentinellakes::fishspeciesmetadata$Gear[mnsentinellakes::fishspeciesmetadata$Name %in% fishspecies[i]])
 
       if(!is.null(fishspecies[i])){
         if (!is.na(fishspecies[i])){
-          LOIDatarow=fishsurvey[fishsurvey$species %in% speciescode & fishsurvey$gear %in% speciesgear,]
+          LOIDatarow = fishsurvey[fishsurvey$species %in% speciescode & fishsurvey$gear %in% speciesgear,]
 
-          if (speciesgear=="Standard gill nets"){
+          if (speciesgear == "Standard gill nets"){
             #Additional data for lakes with shallow and deep gill data
             if ("Shallow gill nets" %in% fishsurvey$gear | "Deep gill nets"%in% fishsurvey$gear){
-              LOIDataadd=fishsurvey[which(fishsurvey$species %in% speciescode & fishsurvey$gear %in% c("Shallow gill nets","Deep gill nets")),]
-              LOIDatacombo=NULL
-              for (j in unique(LOIDataadd$Date)){
+              LOIDataadd = fishsurvey[which(fishsurvey$species %in% speciescode & fishsurvey$gear %in% c("Shallow gill nets","Deep gill nets")),]
+              LOIDatacombo = NULL
+              for (j in unique(LOIDataadd$date)){
 
-                LOIDataselect=LOIDataadd[which(LOIDataadd$Date==j),]
+                LOIDataselect = LOIDataadd[which(LOIDataadd$date==j),]
 
-                cpue=round(sum(LOIDataselect$totalCatch)/sum(LOIDataselect$gearCount),digits = 2)
-                totalcatch=sum(LOIDataselect$totalCatch)
-                totalweight=sum(LOIDataselect$totalWeight)
+                cpue = round(sum(LOIDataselect$totalcatch) / sum(LOIDataselect$gearcount),digits = 2)
+                totalcatch = sum(LOIDataselect$totalcatch)
+                totalweight = sum(LOIDataselect$totalweight)
 
-                if ((mean(as.numeric(LOIDataselect$averageWeight))-(totalweight/totalcatch))<=0.0001){
-                  averageweight=round(totalweight/totalcatch,digits = 2)
+                if ((mean(as.numeric(LOIDataselect$averageweight)) - (totalweight/totalcatch)) <= 0.0001){
+                  averageweight = round(totalweight / totalcatch,digits = 2)
                 }else{
-                  averageweight=round((totalweight/totalcatch)*0.00220462,digits = 2)
+                  averageweight = round((totalweight / totalcatch) * 0.00220462,digits = 2)
                 }
-                gearcount=sum(LOIDataselect$gearCount)
+                gearcount = sum(LOIDataselect$gearcount)
 
-                LOIDatacomborow=data.frame("quartileCount"="N/A","CPUE"=cpue,"totalCatch"=totalcatch,"species"=unique(LOIDataselect$species),"totalWeight"=totalweight,
-                                           "quartileWeight"="N/A","averageWeight"=averageweight,"gearCount"=gearcount,
-                                           "gear"="Shallow and Deep gill nets","Date"=as.Date(j,origin = "1970-01-01"),"LakeId"=unique(LOIDataselect$LakeId),
-                                           "Ecoregion"=unique(LOIDataselect$Ecoregion))
+                LOIDatacomborow = data.frame(
+                  "quartilecount" = "N/A",
+                  "cpue" = cpue,
+                  "totalcatch" = totalcatch,
+                  "species" = unique(LOIDataselect$species),
+                  "totalweight" = totalweight,
+                  "quartileweight" = "N/A",
+                  "averageweight" = averageweight,
+                  "gearcount" = gearcount,
+                  "gear" = "Shallow and Deep gill nets",
+                  "date"=as.Date(j,origin = "1970-01-01"),
+                  "basin_id"=unique(LOIDataselect$basin_id),
+                  "ecoregion"=unique(LOIDataselect$ecoregion))
 
-                if (LOIDatacomborow$totalWeight/LOIDatacomborow$totalCatch!=LOIDatacomborow$averageWeight){
-                  LOIDatacomborow$averageWeight=round(LOIDatacomborow$totalWeight/LOIDatacomborow$totalCatch*0.00220462,digits = 2)
+                if (LOIDatacomborow$totalweight / LOIDatacomborow$totalcatch != LOIDatacomborow$averageweight){
+                  LOIDatacomborow$averageweight = round(LOIDatacomborow$totalweight / LOIDatacomborow$totalcatch * 0.00220462,digits = 2)
                 }
 
-                LOIDatacombo=rbind(LOIDatacombo,LOIDatacomborow)
+                LOIDatacombo = rbind(LOIDatacombo,LOIDatacomborow)
               }
-              LOIDatarow=rbind(LOIDatarow,LOIDatacombo)
+              LOIDatarow = rbind(LOIDatarow,LOIDatacombo)
             }
           }
 
-          if (nrow(LOIDatarow)>0){
-            LOIDatarow=LOIDatarow
+          if (nrow(LOIDatarow) > 0){
+            LOIDatarow = LOIDatarow
           }else{
-            LOIDatarow=LOIDatarow[nrow(LOIDatarow)+1,]
-            LOIDatarow[1,1:11]=NA
-            LOIDatarow$species=fishspecies[i]
+            LOIDatarow = LOIDatarow[nrow(LOIDatarow) + 1,]
+            LOIDatarow[1,1:11] = NA
+            LOIDatarow$species = fishspecies[i]
           }
-          LOIData=rbind(LOIData,LOIDatarow)
+          LOIData = rbind(LOIData,LOIDatarow)
         }
       }
     }
-    LOIData["Year"]=lubridate::year(LOIData$Date)
-    LOIData=LOIData[!is.na(LOIData$CPUE),]
-    LOIData=LOIData[order(LOIData$Date),]
+    LOIData["year"] = lubridate::year(LOIData$date)
+    LOIData = LOIData[!is.na(LOIData$cpue),]
+    LOIData = LOIData[order(LOIData$date),]
   }else{
-    LOIData=NULL
+    LOIData= NULL
     warning("No Fish Survey Data Available")
   }
   return(LOIData)
