@@ -2,7 +2,7 @@
 #'
 #' This function ensures Minnesota Lake IDs (also known as DOWLKNUMs) are characters with "0" at the front and do not have any dashes.
 #' @param lakeid lakeid number
-#' @keywords lakeid dowlknum
+#' @keywords lakeid dowlknum deprecated
 #' @return a character
 #' @family Sentinel Lakes Tools
 #' @examples
@@ -12,6 +12,10 @@
 #' @export
 
 fixlakeid=function(lakeid){
+  .Deprecated(
+    new = "fixbasinid",
+    msg = "Change reflects updated terminology"
+    )
   lakeid=gsub("-","",as.character(lakeid))
   lakeid[nchar(lakeid)==7]=paste0("0",lakeid[nchar(lakeid)<8])
   return(lakeid)
