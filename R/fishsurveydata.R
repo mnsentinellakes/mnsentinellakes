@@ -14,19 +14,22 @@
 #' @export
 
 fishsurveydata = function(lakefinderdata){
+
   if (!is.null(lakefinderdata)){
     LOISurveyData = NULL
     for (j in 1:as.numeric(length(lakefinderdata$result$surveys$surveyDate))){
 
       LOISurveyDatarow = as.data.frame(lakefinderdata$result$surveys$fishCatchSummaries[j])
       if (nrow(LOISurveyDatarow) > 0){
-        LOISurveyDatarow["Date"] = as.Date(lakefinderdata$result$surveys$surveyDate[j])
-        LOISurveyDatarow["LakeId"] = as.character(lakefinderdata$LakeId)
-        LOISurveyDatarow["Ecoregion"] = as.character(mnsentinellakes::mnlakesmetadata$Ecoregion[
-          mnsentinellakes::mnlakesmetadata$LakeId == fixlakeid(lakefinderdata$LakeId)])
+        LOISurveyDatarow["date"] = as.Date(lakefinderdata$result$surveys$surveyDate[j])
+        LOISurveyDatarow["basin_id"] = as.character(lakefinderdata$basin_id)
+        LOISurveyDatarow["ecoregion"] = as.character(mnsentinellakes::mnlakesmetadata$Ecoregion[
+          mnsentinellakes::mnlakesmetadata$LakeId == mnsentinellakes::fixbasinid(lakefinderdata$basin_id)])
 
-        mnsentinellakes::mnlakesmetadata[
-          mnsentinellakes::mnlakesmetadata$LakeId == fixlakeid(lakefinderdata$LakeId),]
+        # mnsentinellakes::mnlakesmetadata[
+        #   mnsentinellakes::mnlakesmetadata$LakeId == fixbasinid(lakefinderdata$basin_id),]
+
+        names(LOISurveyDatarow) = tolower(names(LOISurveyDatarow))
 
         LOISurveyData = rbind(LOISurveyData,LOISurveyDatarow)
       }
