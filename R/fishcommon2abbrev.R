@@ -9,9 +9,9 @@
 #'
 #' @export
 
-fishcommon2abbrev=function(commonname){
-  getabbrev=mnsentinellakes::fishabbreviations$Code
-  names(getabbrev)=mnsentinellakes::fishabbreviations$Name
-  fishabbrev=unname(getabbrev[tools::toTitleCase(commonname)])
+fishcommon2abbrev = function(commonname){
+  getabbrev = mnsentinellakes::fishabbreviations$Code
+  names(getabbrev) = mnsentinellakes::fishabbreviations$Name
+  fishabbrev = unname(getabbrev[tools::toTitleCase(commonname)])
   return(fishabbrev)
 }
