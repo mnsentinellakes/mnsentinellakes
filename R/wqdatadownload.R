@@ -6,12 +6,15 @@
 #' @return data.frame with the downloaded data.
 #' @family Water Quality
 #' @examples
+#' \dontrun{
 #' wqdatadownload("15-0010-00-100")
 #' wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
+#' }
 #'
 #' @export
 
 wqdatadownload = function(stationids){
+  stop("wqdatadownload() is temporarily disable due to issues with the MPCA surface water data api.")
   wqdata = NULL
   for (i in stationids) {
     wqdatadown = as.data.frame(
