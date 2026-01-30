@@ -24,6 +24,7 @@ A data.frame
 This function extracts selected parameters for selected months from the MNPCA water quality data. If multiple months are selected, the function will average each parameter across the selected months.
 }
 \examples{
+\dontrun{
 #Download the data
 x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 
@@ -50,6 +51,7 @@ y <- wqmonthtable(
         months = c(6,7,8,9),
         startyear = 2008
      )
+ }
 }
 \seealso{
 Other Water Quality: 

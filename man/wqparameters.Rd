@@ -18,9 +18,10 @@ A vector of water quality parameters.
 This function returns a vector of the water quality parameters present in data downloaded from the Minnesota Pollution Control Agency's EDA website.
 }
 \examples{
+\dontrun{
 x <- wqdatadownload("15-0010-00-100")
 wqparameters(x)
-
+}
 }
 \seealso{
 Other Water Quality: 

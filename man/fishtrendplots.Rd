@@ -21,7 +21,7 @@ fishtrendplots(
 )
 }
 \arguments{
-\item{plotdata}{a water quality data.frame created with the fishtable() function.}
+\item{plotdata}{a data.frame created with the fishtable() function.}
 
 \item{logtransform}{a logical indicating whether the statistics should be calulated using the natural log of the CPUE +1 values. Defaults to TRUE.}
 

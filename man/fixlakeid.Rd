@@ -23,9 +23,13 @@ fixlakeid("06-0002-00")
 \seealso{
 Other Sentinel Lakes Tools: 
 \code{\link{addunderscore}()},
+\code{\link{basinid2name}()},
+\code{\link{basinname2id}()},
+\code{\link{fixbasinid}()},
 \code{\link{lakeid2name}()},
 \code{\link{lakename2id}()}
 }
 \concept{Sentinel Lakes Tools}
+\keyword{deprecated}
 \keyword{dowlknum}
 \keyword{lakeid}

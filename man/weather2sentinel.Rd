@@ -16,7 +16,7 @@ Lakes formatted datasets. This will also convert all units to metric. All number
 \examples{
 #Download the data
 x <- weatherdownload(
-       lakeid = 21005700,
+       basinid = 21005700,
        startdate = "2019-03-20",
        enddate = "2019-04-01")
 #Convert to Sentinel Lakes formatting

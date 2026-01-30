@@ -4,10 +4,10 @@
 \alias{waterleveldownload}
 \title{Download Water Level Data}
 \usage{
-waterleveldownload(lakeid, metric = TRUE)
+waterleveldownload(basinid, metric = TRUE)
 }
 \arguments{
-\item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
+\item{basinid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
 
 \item{metric}{Logical indicating if the elevations should be in meters. If TRUE, the data will be in meters, if FALSE, the data will be in feet. The default is TRUE.}
 }

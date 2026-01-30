@@ -4,10 +4,10 @@
 \alias{fishstockdownload}
 \title{Download Fish Stocking Data}
 \usage{
-fishstockdownload(lakeid)
+fishstockdownload(basinid)
 }
 \arguments{
-\item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
+\item{basinid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
 }
 \value{
 a data.frame with water level data

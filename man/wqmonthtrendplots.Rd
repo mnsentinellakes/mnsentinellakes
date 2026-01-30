@@ -58,6 +58,7 @@ This function creates and saves water quality trend scatter plots comparing para
 trend statistics calculated with the wqmonthrendstats() function.
 }
 \examples{
+\dontrun{
 #Download the data
 x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 
@@ -74,7 +75,7 @@ y <- wqmonthtable(
 wqmonthtrendplots(
   plotdata = y
   )
-
+}
 }
 \seealso{
 Other Water Quality: 

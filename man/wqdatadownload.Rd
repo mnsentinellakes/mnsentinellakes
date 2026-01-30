@@ -16,8 +16,10 @@ data.frame with the downloaded data.
 This function allows you to download data directly from the Minnesota Pollution Control Agency's EDA website.
 }
 \examples{
+\dontrun{
 wqdatadownload("15-0010-00-100")
 wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
+}
 
 }
 \seealso{

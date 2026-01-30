@@ -14,11 +14,13 @@ Reorganizes water quality data downloaded from the MNPCA's EDA website into a co
 Lakes formatted datasets.
 }
 \examples{
+\dontrun{
 #Download the data
 x <- wqdatadownload(c("15-0010-00-100","15-0010-00-101","15-0010-00-102"))
 
 #Convert to Sentinel Lakes formatting
 y <- wq2sentinel(x)
+}
 }
 \seealso{
 Other Formatting: 

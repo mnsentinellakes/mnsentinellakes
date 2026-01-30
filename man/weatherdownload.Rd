@@ -5,7 +5,7 @@
 \title{Downloads Airport Weather Data}
 \usage{
 weatherdownload(
-  lakeid,
+  basinid,
   startdate,
   enddate,
   parameters = c("Air Temperature", "Dew Point", "Relative Humidity", "Wind Direction",
@@ -13,7 +13,7 @@ weatherdownload(
 )
 }
 \arguments{
-\item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
+\item{basinid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
 
 \item{startdate}{a date indicating the beginning of the date range to be downloaded. Format: "yyyy-mm-dd".}
 
@@ -27,7 +27,7 @@ This function downloads airport weather station data from the Iowa State Mesonet
 }
 \examples{
 x <- weatherdownload(
-       lakeid = 21005700,
+       basinid = 21005700,
        startdate = "2019-03-20",
        enddate = "2019-04-01")
 }

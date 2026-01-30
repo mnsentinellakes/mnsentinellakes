@@ -4,10 +4,10 @@
 \alias{weatherevents}
 \title{Weather Events}
 \usage{
-weatherevents(lakeid, startdate, enddate)
+weatherevents(basinid, startdate, enddate)
 }
 \arguments{
-\item{lakeid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
+\item{basinid}{Minnesota lake identifier (DOWLKNUM) for the lake of interest.}
 
 \item{startdate}{a date indicating the beginning of the date range to be downloaded. Format: "yyyy-mm-dd".}
 
@@ -18,7 +18,7 @@ Determines which days experienced wind (>5 knots), precipitation, or clouds for 
 }
 \examples{
 x = weatherevents(
- lakeid = "16007700",
+ basinid = "16007700",
  startdate = "2019-04-01",
  enddate = "2019-04-30")
 

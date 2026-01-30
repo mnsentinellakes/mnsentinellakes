@@ -25,9 +25,13 @@ lakename2id("Echo")
 \seealso{
 Other Sentinel Lakes Tools: 
 \code{\link{addunderscore}()},
+\code{\link{basinid2name}()},
+\code{\link{basinname2id}()},
+\code{\link{fixbasinid}()},
 \code{\link{fixlakeid}()},
 \code{\link{lakeid2name}()}
 }
 \concept{Sentinel Lakes Tools}
+\keyword{deprecated}
 \keyword{dowlknum}
 \keyword{lakeid}

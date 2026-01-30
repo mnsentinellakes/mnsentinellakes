@@ -4,16 +4,16 @@
 \alias{lakefinderdownload}
 \title{Download Lakefinder Data}
 \usage{
-lakefinderdownload(lakeid)
+lakefinderdownload(basinid)
 }
 \arguments{
-\item{lakeid}{a character indicating the LakeId (DOWLKNUM) for the lake to be downloaded.}
+\item{basinid}{a character indicating the Basin Id (DOWLKNUM) for the lake to be downloaded.}
 }
 \value{
 a list of data
 }
 \description{
-This function downloads the MNDNR Lakefinder website json tables for the selected lake. It was developed by user hrbrmstr at https://stackoverflow.com/questions/46517463/scraping-html-data-table-using-rvest.
+This function downloads the MNDNR Lakefinder website json tables for the selected lake.
 }
 \examples{
 x <- lakefinderdownload("11041300")
