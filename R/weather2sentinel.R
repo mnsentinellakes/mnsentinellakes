@@ -8,7 +8,7 @@
 #' @examples
 #' #Download the data
 #' x <- weatherdownload(
-#'        lakeid = 21005700,
+#'        basinid = 21005700,
 #'        startdate = "2019-03-20",
 #'        enddate = "2019-04-01")
 #' #Convert to Sentinel Lakes formatting
@@ -17,33 +17,37 @@
 
 weather2sentinel=function(weatherdata){
 
-  lakename=mnsentinellakes::lakeid2name(weatherdata$LakeId)
+  basinname = mnsentinellakes::basinid2name(weatherdata$basin_id)
 
-  weather=data.frame("Lake"=lakename,"LakeId"=weatherdata$LakeId,"Station"=weatherdata$station,"Date_Time"=weatherdata$valid)
+  weather=data.frame(
+    "basin_name" = basinname,
+    "basin_id" = weatherdata$basin_id,
+    "station" = weatherdata$station,
+    "date_time"=weatherdata$valid)
 
   if("tmpc" %in% colnames(weatherdata)){
-    weather["Temperature_C"]=round(as.numeric(weatherdata$tmpc),digits=2)
+    weather["temperature_c"] = round(as.numeric(weatherdata$tmpc),digits = 2)
   }
   if("dwpc" %in% colnames(weatherdata)){
-    weather["Dew_Point_C"]=round(as.numeric(weatherdata$dwpc),digits = 2)
+    weather["dew_point_c"] = round(as.numeric(weatherdata$dwpc),digits = 2)
   }
   if("relh" %in% colnames(weatherdata)){
-    weather["Relative_Humidity"]=round(as.numeric(weatherdata$relh),digits = 2)
+    weather["relative_humidity"] = round(as.numeric(weatherdata$relh),digits = 2)
   }
   if("drct" %in% colnames(weatherdata)){
-    weather["Wind_Direction"]=round(as.numeric(weatherdata$drct),digits = 2)
+    weather["wind_direction"] = round(as.numeric(weatherdata$drct),digits = 2)
   }
   if("sknt" %in% colnames(weatherdata)){
-    weather["Wind_Speed_kph"]=round(as.numeric(weatherdata$sknt)*1.852,digits = 2)
+    weather["wind_speed_kph"] = round(as.numeric(weatherdata$sknt) * 1.852,digits = 2)
   }
   if("gust" %in% colnames(weatherdata)){
-    weather["Wind_Gust_kph"]=round(as.numeric(weatherdata$gust)*1.852,digits = 2)
+    weather["wind_gust_kph"]=round(as.numeric(weatherdata$gust) * 1.852,digits = 2)
   }
   if("alti" %in% colnames(weatherdata)){
-    weather["Altimeter_Pa"]=round(as.numeric(weatherdata$alti)*3376.85,digits = 2)
+    weather["altimeter_pa"]=round(as.numeric(weatherdata$alti) * 3376.85,digits = 2)
   }
   if("p01m" %in% colnames(weatherdata)){
-    weather["Precipitation_mm"]=round(as.numeric(weatherdata$p01m),digits = 2)
+    weather["precipitation_mm"] = round(as.numeric(weatherdata$p01m),digits = 2)
   }
 
   return(weather)
